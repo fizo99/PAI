@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Login</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <link rel="stylesheet" href="../css/basicstyles.css">
+        <link rel="stylesheet" href="../css/new.css">
+        <script src="https://kit.fontawesome.com/6afad8acbe.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <nav>
+            <span>TAXAMO</span>
+            <div class="nav-buttons-container">
+                <div class="nav-button"><i class="fas fa-plus"></i>Create new</div>
+                <div class="nav-button"><i class="fas fa-list"></i>My invoices</div>
+                <div class="nav-button"><i class="fas fa-cog"></i>Settings</div>
+            </div>
+        </nav>
+        <main>
+            <h2 class="page-title">YOUR DETAILS</h2>
+            <div id="form-container">
+                <form> 
+                    <label>Invoice Details</label>
+                    <div class="details-container">
+                        <input type="text" name="nip" placeholder="NIP">
+                        <input type="text" name="company_name" placeholder="Company Name">
+                        <input type="text" name="nip" placeholder="NIP">
+                        <input type="text" name="nip" placeholder="NIP">
+                    </div>
+                    <label>Buyer Details</label>
+                    <div class="details-container">
+                        <input type="text" name="name" placeholder="Name">
+                        <input type="text" name="surname" placeholder="Surname">
+                        <input type="text" name="phone_number" placeholder="Phone Number">
+                        <input type="text" name="iban" placeholder="IBAN">
+                        <input type="text" name="iban" placeholder="IBAN">
+                        <input type="text" name="iban" placeholder="IBAN">
+                        <div id="street">
+                            <input id="street-name" type="text" name="street" placeholder="Street Name">
+                            <input id="street-nr" type="text" name="street_nr" placeholder="Nr">
+                        </div>
+                    </div>
+                    <label>Items</label>
+                    <table id="items">
+                        <thead>
+                            <tr>
+                              <th class="w-30">Product Name</th>
+                              <th class="w-10">QU</th>
+                              <th class="w-10">Unit</th>
+                              <th class="w-20">Netto</th>
+                              <th class="w-10">%</th>
+                              <th class="w-20">Brutto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="total">72322 zł</div>
+                    <input id="total-words" type="text" name="total-words" placeholder="In Words:"></input>
+                </form>
+                <button id="save" class="btn-solid-blue">SAVE</button>
+            </div>
+        </main>
+    </body>
+    <script>
+        const first = document.getElementById('first');
+        const save = document.getElementById('save');
+        save.onclick = function() {
+            first.remove();
+        }
+    </script>
+</html>
