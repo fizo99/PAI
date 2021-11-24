@@ -13,9 +13,13 @@ form {
 }
 form label {
     color: #395FF6;
+    margin-top: 12px;
+}
+form label:first-child {
+    margin-top: 0px;
 }
 form input {
-    padding: 10px 10px;
+    padding: 8px 8px;
 }
 form > * {
     margin-top: 6px;
@@ -42,27 +46,39 @@ form > * {
     width: 10%;
 }
 
-.details-container {
+.buyer-details-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-
-.details-container input {
+.buyer-details-container > * {
     width: 48%;
+    margin-right: 2%;
     margin-top: 6px;
 }
+.street-container {
+    display: flex;
+    flex-direction: row;
+}
+.street-container input:first-child {
+    width: 100%;
+    margin-right: 6px;
+}
+.street-container input:nth-child(2){
+    width: 20%;
+}
+
 table{
     display: block;
     counter-reset: rowNumber;
     text-align: left;
     table-layout: fixed; 
     width: 100%;
-    height: 20vh;
+    height: 25vh;
     overflow-y: scroll;
-    border: 1px solid #CBD0D7;
     border-collapse: collapse;
+    border: 1px solid white;
 }
 
 table thead th {
@@ -70,6 +86,13 @@ table thead th {
     top: 0;
     z-index: 1;
     background-color: #395FF6;
+    padding: 10px 0px;
+}
+
+th,td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 5px;
 }
 
 table thead tr th:first-child::before {
@@ -91,18 +114,21 @@ table tr td:first-child::before
     margin: 0 .5em;
 }
 table thead {
-    color: #CBD0D7;
+    color: white;
     width: 100%;
 }
 table tbody {
     color: #7F7F7F;
 }
 
-#total {
+.total-container {
     color: #000000;
     background-color: #EEF1FF;
     margin-top: 6px;
     padding: 10px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 table input {
@@ -117,3 +143,43 @@ table tbody tr td:first-child {
     justify-content: center;
     align-items: center;
 }
+
+table tbody tr {
+    margin-top: 10x;
+}
+
+#items-label > i{
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: white;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #395FF6;
+    border-left: 1px solid white;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: white;
+  }
+
+
+  #additional-informations{
+      height: 20%;
+      resize: none;
+      padding: 12px;
+      border: none;
+  }
+  #additional-informations::placeholder {
+      color: #CBD0D7;
+  }
