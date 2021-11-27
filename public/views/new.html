@@ -21,34 +21,34 @@
     <nav>
         <span>TAXAMO</span>
         <div class="nav-buttons-container">
-            <div class="nav-button"><i class="fas fa-plus"></i>Create new</div>
-            <div class="nav-button"><i class="fas fa-list"></i>My invoices</div>
-            <div class="nav-button"><i class="fas fa-cog"></i>Settings</div>
+            <a href="new.html" class="nav-button btn-active"><i class="fas fa-plus"></i>Create new</a>
+            <a href="my_invoices.html" class="nav-button"><i class="fas fa-list"></i>My invoices</a>
+            <a href="settings.html" class="nav-button"><i class="fas fa-cog"></i>Settings</a>
         </div>
     </nav>
     <main>
         <h2 class="page-title">New Invoice</h2>
         <div id="form-container">
             <form>
-                <label>Invoice Details</label>
+                <label id="invoice-details-label">Invoice Details</label>
                 <div class="invoice-details-container">
-                    <input type="text" name="nip" placeholder="Place">
-                    <input type="text" name="company_name" placeholder="Date">
-                    <input type="text" name="nip" placeholder="Invoice number">
-                    <input type="text" name="nip" placeholder="Payment method">
+                    <input type="text" name="place" placeholder="Place">
+                    <input type="text" name="date" placeholder="Date">
+                    <input type="text" name="invoice_nr" placeholder="Invoice number">
+                    <input type="text" name="payment_method" placeholder="Payment method">
                 </div>
-                <label>Buyer Details</label>
+                <label id="buyer-details-label">Buyer Details</label>
                 <div class="buyer-details-container">
-                    <input type="text" name="name" placeholder="NIP">
-                    <input type="text" name="surname" placeholder="City">
-                    <input type="text" name="phone_number" placeholder="Name">
-                    <input type="text" name="iban" placeholder="Zip Code">
-                    <input type="text" name="iban" placeholder="Surname">
+                    <input type="text" name="nip" placeholder="NIP">
+                    <input type="text" name="city" placeholder="City">
+                    <input type="text" name="name" placeholder="Name">
+                    <input type="text" name="zip_code" placeholder="Zip Code">
+                    <input type="text" name="surname" placeholder="Surname">
                     <div class="street-container">
-                        <input type="text" name="iban" placeholder="Street">
-                        <input type="text" name="iban" placeholder="Nr">
+                        <input type="text" name="street_name" placeholder="Street">
+                        <input type="text" name="street_nr" placeholder="Nr">
                     </div>
-                    <input type="text" name="iban" placeholder="Phone Number">
+                    <input type="text" name="phone_nr" placeholder="Phone Number">
                 </div>
                 <label id="items-label">Items<i class="fas fa-plus"></i></label>
                 <table id="items">
@@ -60,6 +60,7 @@
                             <th class="w-20">Netto</th>
                             <th class="w-10">%</th>
                             <th class="w-20">Brutto</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,6 +71,7 @@
                             <td><input type="text"></td>
                             <td><input type="text"></td>
                             <td><input type="text"></td>
+                            <td><i class="fas fa-trash"></i></td>
                         </tr>
                         <tr>
                             <td><input type="text"></td>
@@ -78,6 +80,7 @@
                             <td><input type="text"></td>
                             <td><input type="text"></td>
                             <td><input type="text"></td>
+                            <td><i class="fas fa-trash"></i></td>
                         </tr>
                         <tr>
                             <td><input type="text"></td>
@@ -86,6 +89,7 @@
                             <td><input type="text"></td>
                             <td><input type="text"></td>
                             <td><input type="text"></td>
+                            <td><i class="fas fa-trash"></i></td>
                         </tr>
                         <tr>
                             <td><input type="text"></td>
@@ -94,6 +98,7 @@
                             <td><input type="text"></td>
                             <td><input type="text"></td>
                             <td><input type="text"></td>
+                            <td><i class="fas fa-trash"></i></td>
                         </tr>
                     </tbody>
                 </table>
