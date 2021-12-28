@@ -15,7 +15,16 @@
 <body>
     <main id="login">
         <span>TAXAMO</span>
-        <form class="login">
+        <form class="login" method="POST">
+            <div class="messages">
+                <?php
+                if(isset($messages)){
+                    foreach($messages as $message) {
+                        echo $message;
+                    }
+                }
+                ?>
+            </div>
             <input type="text" name="email" placeholder="Email">
             <input type="password" name="password" placeholder="Password">
             <input type="password" name="password-repeat" placeholder="Repeat Password">

@@ -17,7 +17,14 @@
     <body>
         <div id="login">
             <span>TAXAMO</span>
-            <form class="login">
+            <form class="login" method="POST">
+                <?php
+                if(isset($messages)){
+                    foreach($messages as $message) {
+                        echo $message;
+                    }
+                }
+                ?>
                 <input type="text" name="email" placeholder="Email">
                 <input type="password" name="password" placeholder="Password">
                 <button class = "btn-solid-blue" type="submit">Login</button>

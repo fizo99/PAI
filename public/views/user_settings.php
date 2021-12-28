@@ -25,7 +25,16 @@
     <main>
         <h2 class="page-title">Your Details</h2>
         <div id="form-container">
-            <form>
+            <form id="user-settings" method="post">
+                <div class="messages">
+                    <?php
+                    if(isset($messages)){
+                        foreach($messages as $message) {
+                            echo $message;
+                        }
+                    }
+                    ?>
+                </div>
                 <label>Company Details</label>
                 <input type="text" name="nip" placeholder="NIP">
                 <input type="text" name="company_name" placeholder="Company Name">
@@ -37,11 +46,11 @@
                 <input type="text" name="city" placeholder="City">
                 <input type="text" name="zip" placeholder="Zip Code">
                 <div id="street">
-                    <input id="street-name" type="text" name="street" placeholder="Street Name">
+                    <input id="street-name" type="text" name="street_name" placeholder="Street Name">
                     <input id="street-nr" type="text" name="street_nr" placeholder="Nr">
                 </div>
             </form>
-            <button class="btn-solid-blue">SAVE</button>
+            <button class="btn-solid-blue" type="submit" form="user-settings">SAVE</button>
         </div>
     </main>
 </body>
