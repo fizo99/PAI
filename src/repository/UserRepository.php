@@ -6,7 +6,6 @@ require_once __DIR__ . '/../models/User.php';
 
 class UserRepository extends Repository
 {
-
     public function getUser(string $email, PDO $existingConn = null): ?User
     {
         $conn = $existingConn == null ? $this->connectRepository() : $existingConn;
@@ -25,6 +24,7 @@ class UserRepository extends Repository
         return new User(
             $user['email'],
             $user['password'],
+            $user['user_id']
         );
     }
 

@@ -5,6 +5,7 @@ require_once 'src/controllers/LoginController.php';
 require_once 'src/controllers/RegisterController.php';
 require_once 'src/controllers/NewInvoiceController.php';
 require_once 'src/controllers/MyInvoicesController.php';
+require_once 'src/controllers/LogoutController.php';
 
 class Router {
 

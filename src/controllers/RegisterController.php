@@ -1,6 +1,7 @@
 <?php
 
 require_once 'AppController.php';
+require_once 'PostArrayObjectFactory.php';
 require_once __DIR__ . '/../models/Address.php';
 require_once __DIR__ . '/../models/Company.php';
 require_once __DIR__ . '/../repository/CompanyRepository.php';
@@ -31,10 +32,9 @@ class RegisterController extends AppController
         $password = $_POST['password'];
         $passwordRepeat = $_POST['password-repeat'];
 
-
-        $user = PostArrayObjectFactory::createUser($_POST);
-        $address = PostArrayObjectFactory::createAddress($_POST);
-        $company = PostArrayObjectFactory::createCompany($_POST);
+        $user = PostArrayObjectFactory::createUser();
+        $address = PostArrayObjectFactory::createAddress();
+        $company = PostArrayObjectFactory::createCompany();
 
         //TODO: throw validation to another class
         if ($password !== $passwordRepeat) {
@@ -47,7 +47,7 @@ class RegisterController extends AppController
             $conn->beginTransaction();
             $addressId = $this->addressRepository->addAddress($address, $conn);
             $companyId = $this->companyRepository->addCompany($company, $addressId, $conn);
-            $this->userRepository->addUser($user, $companyId, $conn);
+            $userId = $this->userRepository->addUser($user, $companyId, $conn);
 
             $conn->commit();
         } catch (UserExistsException $ex) {
@@ -58,7 +58,11 @@ class RegisterController extends AppController
             return $this->render('register', ['messages' => [$ex->getMessage()]]);
         }
 
+        $cookieName = "userID";
+        $cookieValue = $userId;
+        setcookie($cookieName,$cookieValue, time() + (86400 * 30 * 7), "/");
+
         $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/login");
+        header("Location: {$url}/new_invoice");
     }
 }

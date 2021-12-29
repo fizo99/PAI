@@ -14,7 +14,7 @@ class NewInvoiceController extends AppController {
 
     public function new_invoice()
     {
-        if (!isset($_COOKIE['user'])) {
+        if (!isset($_COOKIE['userID'])) {
             $url = "http://$_SERVER[HTTP_HOST]";
             header("Location: {$url}/login");
         }else{

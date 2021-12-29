@@ -18,6 +18,7 @@
     <div class="nav-buttons-container">
         <a href="new_invoice" class="nav-button btn-active"><i class="fas fa-plus"></i>Create new</a>
         <a href="my_invoices" class="nav-button"><i class="fas fa-list"></i>My invoices</a>
+        <a href="logout" class="nav-button"><i class="fas fa-sign-out-alt"></i></button></a>
     </div>
 </nav>
 <main>

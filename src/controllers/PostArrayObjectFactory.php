@@ -2,13 +2,13 @@
 
 class PostArrayObjectFactory
 {
-    static function createUser(array $post): User
+    static function createUser(): User
     {
         $email = $_POST['email'];
-        $password = md5($_POST['password']);
+        $password = $_POST['password'];
         return new User($email, md5($password));
     }
-    static function createCompany(array $post): Company
+    static function createCompany(): Company
     {
         $nip = $_POST['nip'];
         $companyName = $_POST['company_name'];
@@ -24,7 +24,7 @@ class PostArrayObjectFactory
             $iban
         );
     }
-    static function createAddress(array $post): Address
+    static function createAddress(): Address
     {
         $city = $_POST['city'];
         $zip = $_POST['zip'];

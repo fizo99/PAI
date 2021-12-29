@@ -14,12 +14,12 @@ class MyInvoicesController extends AppController {
 
     public function my_invoices()
     {
-        if (!isset($_COOKIE['user'])) {
+        if (!isset($_COOKIE['userID'])) {
             $url = "http://$_SERVER[HTTP_HOST]";
             header("Location: {$url}/login");
         }else{
             if (!$this->isPost()) {
-                return $this->render('new_invoice');
+                return $this->render('my_invoices');
             }
         }
 

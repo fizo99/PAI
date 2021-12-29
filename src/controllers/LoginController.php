@@ -17,13 +17,15 @@ class LoginController extends AppController {
 
     public function login()
     {
+        if (isset($_COOKIE['userID'])) {
+            $url = "http://$_SERVER[HTTP_HOST]";
+            header("Location: {$url}/new_invoice");
+        }
         if (!$this->isPost()) {
             return $this->render('login');
         }
 
         $email = $_POST['email'];
-        $password = md5($_POST['password']);
-
         $user = $this->userRepository->getUser($email);
 
         // TODO: throw validation to another class
@@ -35,12 +37,13 @@ class LoginController extends AppController {
             return $this->render('login', ['messages' => ['User with this email does not exist!']]);
         }
 
+        $password = md5($_POST['password']);
         if ($user->getPassword() !== $password) {
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
 
-        $cookieName = "user";
-        $cookieValue = $user->getEmail();
+        $cookieName = "userID";
+        $cookieValue = $user->getUserId();
         setcookie($cookieName,$cookieValue, time() + (86400 * 30 * 7), "/");
 
         $url = "http://$_SERVER[HTTP_HOST]";
