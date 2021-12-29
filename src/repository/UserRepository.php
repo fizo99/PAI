@@ -4,11 +4,11 @@ require_once 'Repository.php';
 require_once 'UserExistsException.php';
 require_once __DIR__ . '/../models/User.php';
 
-class UserRepository extends Repository
+class UserRepository
 {
     public function getUser(string $email, PDO $existingConn = null): ?User
     {
-        $conn = $existingConn == null ? $this->connectRepository() : $existingConn;
+        $conn = $existingConn == null ? Repository::connect() : $existingConn;
         $stmt = $conn->prepare('
             SELECT * FROM users WHERE email = :email
         ');
@@ -31,7 +31,7 @@ class UserRepository extends Repository
     public function addUser(User $user, string $companyId, PDO $existingConn = null): string
     {
         // TODO: handle errors
-        $conn = $existingConn == null ? $this->connectRepository() : $existingConn;
+        $conn = $existingConn == null ? Repository::connect() : $existingConn;
 //        if ($this->getUser($user->getEmail())) {
 //            throw new UserExistsException("User with email ". $user->getEmail() . " already exists");
 //        }

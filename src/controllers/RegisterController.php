@@ -4,6 +4,7 @@ require_once 'AppController.php';
 require_once 'PostArrayObjectFactory.php';
 require_once __DIR__ . '/../models/Address.php';
 require_once __DIR__ . '/../models/Company.php';
+require_once __DIR__ . '/../repository/Repository.php';
 require_once __DIR__ . '/../repository/CompanyRepository.php';
 require_once __DIR__ . '/../repository/AddressRepository.php';
 require_once __DIR__ . '/../repository/UserRepository.php';
@@ -42,7 +43,7 @@ class RegisterController extends AppController
         }
 
         try {
-            $conn = $this->userRepository->connectRepository();
+            $conn = Repository::connect();
 
             $conn->beginTransaction();
             $addressId = $this->addressRepository->addAddress($address, $conn);

@@ -4,12 +4,12 @@ require_once 'Repository.php';
 require_once 'AddressExistsException.php';
 require_once __DIR__ . '/../models/Address.php';
 
-class AddressRepository extends Repository
+class AddressRepository
 {
     public function addAddress(Address $address, PDO $existingConn = null): string
     {
         // TODO: handle errors
-        $conn = $existingConn == null ? $this->connectRepository() : $existingConn;
+        $conn = $existingConn == null ? Repository::connect() : $existingConn;
 //        $address = $this->getAddress($user->getEmail());
 //        if ($address) {
 //            throw new AddressExistsException("Address exists.");

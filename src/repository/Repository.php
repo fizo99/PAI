@@ -3,14 +3,17 @@
 require_once __DIR__.'/../../Database.php';
 
 class Repository {
-    protected $database;
+    private static $database;
 
-    public function __construct()
-    {
-        $this->database = new Database();
+    static function init() {
+        if(Repository::$database == null){
+            Repository::$database = new Database();
+        }
     }
 
-    public function connectRepository(): PDO {
-        return $this->database->connect();
+    public static function connect(): PDO {
+        return Repository::$database->connect();
     }
 }
+
+Repository::init();

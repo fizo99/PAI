@@ -5,12 +5,12 @@ require_once 'CompanyExistsException.php';
 require_once __DIR__ . '/../models/Company.php';
 require_once __DIR__ . '/../models/Address.php';
 
-class CompanyRepository extends Repository
+class CompanyRepository
 {
 
     public function getCompany(string $nip, PDO $existingConn = null): ?Company
     {
-        $conn = $existingConn == null ? $this->connectRepository() : $existingConn;
+        $conn = $existingConn == null ? Repository::connect() : $existingConn;
 
         $stmt = $conn->prepare('
             SELECT * FROM companies
@@ -37,7 +37,7 @@ class CompanyRepository extends Repository
     public function addCompany(Company $company, string $addressId, PDO $existingConn = null) : string
     {
         // TODO: handle errors
-        $conn = $existingConn == null ? $this->connectRepository() : $existingConn;
+        $conn = $existingConn == null ? Repository::connect() : $existingConn;
 
         $existingCompany = $this->getCompany($company->getNIP());
         if ($existingCompany) {
