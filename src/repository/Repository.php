@@ -9,4 +9,8 @@ class Repository {
     {
         $this->database = new Database();
     }
+
+    public function connectRepository(): PDO {
+        return $this->database->connect();
+    }
 }

@@ -8,9 +8,11 @@ require_once __DIR__ . '/../models/Address.php';
 class CompanyRepository extends Repository
 {
 
-    public function getCompany(string $nip): ?Company
+    public function getCompany(string $nip, PDO $existingConn = null): ?Company
     {
-        $stmt = $this->database->connect()->prepare('
+        $conn = $existingConn == null ? $this->connectRepository() : $existingConn;
+
+        $stmt = $conn->prepare('
             SELECT * FROM companies
             inner join addresses on companies.address_id=addresses.address_id 
             where nip = :nip
@@ -32,41 +34,30 @@ class CompanyRepository extends Repository
         );
     }
 
-    public function addCompany(Company $company, Address $address)
+    public function addCompany(Company $company, string $addressId, PDO $existingConn = null) : string
     {
+        // TODO: handle errors
+        $conn = $existingConn == null ? $this->connectRepository() : $existingConn;
+
         $existingCompany = $this->getCompany($company->getNIP());
         if ($existingCompany) {
             throw new CompanyExistsException("Company with NIP ". $company->getNIP() . " already exists");
         }
 
-        //TODO: think about separate repository for address
-
-        $connection = $this->database->connect();
-        $stmtAddress = $connection->prepare('
-            INSERT INTO addresses (city,zip_code,street_name,street_nr)
-            VALUES (?, ?, ?, ?)
-        ');
-        $stmtCompany = $connection->prepare('
+        $stmtCompany = $conn->prepare('
             INSERT INTO companies (nip,name,email,phone_number,iban,address_id)
             VALUES (?, ?, ?, ?, ?, ?)
         ');
 
-        $connection->beginTransaction();
-        $stmtAddress->execute([
-            $address->getCity(),
-            $address->getZipCode(),
-            $address->getStreetName(),
-            $address->getStreetNumber(),
-        ]);
-        $id = $connection->lastInsertId();
         $stmtCompany->execute([
             $company->getNIP(),
             $company->getName(),
             $company->getEmail(),
             $company->getPhoneNumber(),
             $company->getIBAN(),
-            $id
+            $addressId
         ]);
-        $connection->commit();
+
+        return $company->getNIP();
     }
 }

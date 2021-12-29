@@ -28,7 +28,7 @@
                 <input type="text" name="email" placeholder="Email">
                 <input type="password" name="password" placeholder="Password">
                 <button class = "btn-solid-blue" type="submit">Login</button>
-                <button class = "btn-text" btn-type="submit">Register</button>
+                <button class = "btn-text">Register</button>
             </form>
         </div>
     </body>

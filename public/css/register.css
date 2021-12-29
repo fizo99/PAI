@@ -1,0 +1,49 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;;
+    justify-content: center;
+    align-items: center;
+}
+form > * {
+    width: 100%;
+}
+
+input {
+    margin-top: 5px;
+    max-height: 25px;
+    padding: 15px 15px;
+}
+
+label {
+    display: block;
+    margin-top: 5px;
+}
+
+#street{
+    display: flex;
+    flex-direction: row;
+}
+
+#street-nr {
+    margin-left: 5px;
+}
+#street-name {
+    width: 80%;
+}
+
+button {
+    margin-top: 10px;
+    width: 30%;
+    padding: 10px;
+}
+span {
+    font-size: 86px;
+    color: #395FF6;
+}

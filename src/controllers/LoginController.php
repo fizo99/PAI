@@ -5,7 +5,7 @@ require_once __DIR__ .'/../models/User.php';
 require_once __DIR__ .'/../repository/UserRepository.php';
 require_once __DIR__ .'/../repository/UserExistsException.php';
 
-class SecurityController extends AppController {
+class LoginController extends AppController {
 
     private $userRepository;
 
@@ -26,44 +26,24 @@ class SecurityController extends AppController {
 
         $user = $this->userRepository->getUser($email);
 
+        // TODO: throw validation to another class
         if (!$user) {
             return $this->render('login', ['messages' => ['User not found!']]);
         }
 
         if ($user->getEmail() !== $email) {
-            return $this->render('login', ['messages' => ['User with this email not exist!']]);
+            return $this->render('login', ['messages' => ['User with this email does not exist!']]);
         }
 
         if ($user->getPassword() !== $password) {
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
 
+        $cookieName = "user";
+        $cookieValue = $user->getEmail();
+        setcookie($cookieName,$cookieValue, time() + (86400 * 30 * 7), "/");
+
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/new_invoice");
-    }
-
-    public function register()
-    {
-        if (!$this->isPost()) {
-            return $this->render('register');
-        }
-
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $passwordRepeat = $_POST['password-repeat'];
-
-        if ($password !== $passwordRepeat) {
-            return $this->render('register', ['messages' => ['Passwords are different!']]);
-        }
-
-        $user = new User($email, md5($password));
-        try{
-            $this->userRepository->addUser($user);
-        }catch (UserExistsException $ex) {
-            return $this->render('register', ['messages' => [$ex->getMessage()]]);
-        }
-
-        $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/login");
     }
 }

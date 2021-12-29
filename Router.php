@@ -1,8 +1,10 @@
 <?php
 
 require_once 'src/controllers/DefaultController.php';
-require_once 'src/controllers/SecurityController.php';
-require_once 'src/controllers/UserSettingsController.php';
+require_once 'src/controllers/LoginController.php';
+require_once 'src/controllers/RegisterController.php';
+require_once 'src/controllers/NewInvoiceController.php';
+require_once 'src/controllers/MyInvoicesController.php';
 
 class Router {
 

@@ -7,9 +7,10 @@ require_once __DIR__ . '/../models/User.php';
 class UserRepository extends Repository
 {
 
-    public function getUser(string $email): ?User
+    public function getUser(string $email, PDO $existingConn = null): ?User
     {
-        $stmt = $this->database->connect()->prepare('
+        $conn = $existingConn == null ? $this->connectRepository() : $existingConn;
+        $stmt = $conn->prepare('
             SELECT * FROM users WHERE email = :email
         ');
         $stmt->bindParam(':email', $email);
@@ -27,21 +28,25 @@ class UserRepository extends Repository
         );
     }
 
-    public function addUser(User $user)
+    public function addUser(User $user, string $companyId, PDO $existingConn = null): string
     {
-        $existingUser = $this->getUser($user->getEmail());
-        if ($existingUser) {
-            throw new UserExistsException("User with email ". $user->getEmail() . " already exists");
-        }
+        // TODO: handle errors
+        $conn = $existingConn == null ? $this->connectRepository() : $existingConn;
+//        if ($this->getUser($user->getEmail())) {
+//            throw new UserExistsException("User with email ". $user->getEmail() . " already exists");
+//        }
 
-        $stmt = $this->database->connect()->prepare('
-            INSERT INTO users (email,password)
-            VALUES (?, ?)
+        $stmt = $conn->prepare('
+            INSERT INTO users (email,password,company_id)
+            VALUES (?, ?, ?)
         ');
 
         $stmt->execute([
-                $user->getEmail(),
-                $user->getPassword(),
+            $user->getEmail(),
+            $user->getPassword(),
+            $companyId
         ]);
+
+        return $conn->lastInsertId();
     }
 }
