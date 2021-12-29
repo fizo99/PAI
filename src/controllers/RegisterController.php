@@ -58,9 +58,8 @@ class RegisterController extends AppController
             return $this->render('register', ['messages' => [$ex->getMessage()]]);
         }
 
-        $cookieName = "userID";
-        $cookieValue = $userId;
-        setcookie($cookieName,$cookieValue, time() + (86400 * 30 * 7), "/");
+        session_start();
+        $_SESSION['userID'] = $userId;
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/new_invoice");

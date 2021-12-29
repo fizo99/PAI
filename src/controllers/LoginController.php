@@ -17,7 +17,8 @@ class LoginController extends AppController {
 
     public function login()
     {
-        if (isset($_COOKIE['userID'])) {
+        session_start();
+        if (isset($_SESSION['userID'])) {
             $url = "http://$_SERVER[HTTP_HOST]";
             header("Location: {$url}/new_invoice");
         }
@@ -42,9 +43,7 @@ class LoginController extends AppController {
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
 
-        $cookieName = "userID";
-        $cookieValue = $user->getUserId();
-        setcookie($cookieName,$cookieValue, time() + (86400 * 30 * 7), "/");
+        $_SESSION['userID'] = $user->getUserId();
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/new_invoice");

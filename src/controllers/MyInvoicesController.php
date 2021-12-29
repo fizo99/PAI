@@ -14,7 +14,8 @@ class MyInvoicesController extends AppController {
 
     public function my_invoices()
     {
-        if (!isset($_COOKIE['userID'])) {
+        session_start();
+        if (!isset($_SESSION['userID'])) {
             $url = "http://$_SERVER[HTTP_HOST]";
             header("Location: {$url}/login");
         }else{
