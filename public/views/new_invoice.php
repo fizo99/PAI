@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link rel="stylesheet" href="public/css/common.css">
-    <link rel="stylesheet" href="public/css/new_invoice.css">
+    <link rel="stylesheet" href="public/css/new.css">
     <script src="https://kit.fontawesome.com/6afad8acbe.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./public/js/script.js" defer></script>
 </head>
 
 <body>
@@ -24,28 +25,32 @@
 <main>
     <h2 class="page-title">New Invoice</h2>
     <div id="form-container">
-        <form>
+        <form id="invoice-form">
             <label id="invoice-details-label">Invoice Details</label>
             <div class="invoice-details-container">
+                <input type="text" name="invoice_type" placeholder="Invoice Type">
                 <input type="text" name="place" placeholder="Place">
                 <input type="text" name="date" placeholder="Date">
                 <input type="text" name="invoice_nr" placeholder="Invoice number">
                 <input type="text" name="payment_method" placeholder="Payment method">
             </div>
-            <label id="buyer-details-label">Buyer Details</label>
-            <div class="buyer-details-container">
+            <div>
+                <label id="buyer-details-label">Buyer Details</label>
+                <input class="checkbox-round" type="checkbox" id="is_company" name="is_company" checked>
+                <label for="is_company">Company</label>
+            </div>
+            <div id="buyer-details-container">
                 <input type="text" name="nip" placeholder="NIP">
                 <input type="text" name="city" placeholder="City">
-                <input type="text" name="name" placeholder="Name">
+                <input type="text" name="company_name" placeholder="Company Name">
                 <input type="text" name="zip_code" placeholder="Zip Code">
-                <input type="text" name="surname" placeholder="Surname">
                 <div class="street-container">
                     <input type="text" name="street_name" placeholder="Street">
                     <input type="text" name="street_nr" placeholder="Nr">
                 </div>
                 <input type="text" name="phone_nr" placeholder="Phone Number">
             </div>
-            <label id="items-label">Items<i class="fas fa-plus"></i></label>
+            <label id="items-label">Items<i id='item-add-button' class="fas fa-plus"></i></label>
             <table id="items">
                 <thead>
                 <tr>
@@ -58,34 +63,7 @@
                     <th></th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><i class="fas fa-trash"></i></td>
-                </tr>
-                <tr>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><i class="fas fa-trash"></i></td>
-                </tr>
-                <tr>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><i class="fas fa-trash"></i></td>
-                </tr>
+                <tbody id="table-body">
                 <tr>
                     <td><input type="text"></td>
                     <td><input type="text"></td>
@@ -101,19 +79,42 @@
                 Total
                 <div id="total">72322 zł</div>
             </div>
-            <input id="total-words" type="text" name="total-words" placeholder="In Words:"></input>
         </form>
         <textarea id="additional-informations" placeholder="Additional informations..." type="text"></textarea>
-        <button id="save" class="btn-solid-blue">SAVE</button>
+        <button id="save" onclick="handleSave()" class="btn-solid-blue">SAVE</button>
     </div>
 </main>
+<template id="for-company">
+    <input type="text" name="nip" placeholder="NIP">
+    <input type="text" name="city" placeholder="City">
+    <input type="text" name="company_name" placeholder="Company Name">
+    <input type="text" name="zip_code" placeholder="Zip Code">
+    <div class="street-container">
+        <input type="text" name="street_name" placeholder="Street">
+        <input type="text" name="street_nr" placeholder="Nr">
+    </div>
+    <input type="text" name="phone_nr" placeholder="Phone Number">
+</template>
+<template id="for-private">
+    <input type="text" name="buyer_full_name" placeholder="Buyer full name">
+    <input type="text" name="city" placeholder="City">
+    <input type="text" name="zip_code" placeholder="Zip Code">
+    <div class="street-container">
+        <input type="text" name="street_name" placeholder="Street">
+        <input type="text" name="street_nr" placeholder="Nr">
+    </div>
+    <input type="text" name="phone_nr" placeholder="Phone Number">
+</template>
+<template id="table-row">
+    <tr>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><i class="fas fa-trash"></i></td>
+    </tr>
+</template>
 </body>
-<script>
-    const first = document.getElementById('first');
-    const save = document.getElementById('save');
-    save.onclick = function () {
-        first.remove();
-    }
-</script>
-
 </html>
