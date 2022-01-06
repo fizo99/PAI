@@ -1,10 +1,6 @@
 <?php
 
 class Company {
-    public function getAddress(): Address
-    {
-        return $this->address;
-    }
     public function getNIP()
     {
         return $this->NIP;
@@ -36,9 +32,9 @@ class Company {
     public function __construct(
         string $NIP,
         string $name,
-        string $email,
         string $phoneNumber,
-        string $IBAN
+        $email = null,
+        $IBAN = null
     ) {
         $this->NIP=$NIP;
         $this->name=$name;

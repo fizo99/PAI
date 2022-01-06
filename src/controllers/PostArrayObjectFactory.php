@@ -19,8 +19,8 @@ class PostArrayObjectFactory
         return new Company(
             $nip,
             $companyName,
-            $contactEmail,
             $phoneNumber,
+            $contactEmail,
             $iban
         );
     }

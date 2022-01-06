@@ -12,7 +12,11 @@ ENV BUILD_DEPS \
     libzip-dev \
     libpng-dev \
     libjpeg-turbo-dev \
-    postgresql-dev
+    postgresql-dev \
+    autoconf \
+    gcc \
+    make \
+    g++
 
 ENV PHP_EXTENSIONS \
     opcache \
@@ -22,12 +26,14 @@ ENV PHP_EXTENSIONS \
     pgsql \
     pdo_pgsql
 
-RUN apk add --no-cache --virtual .build-deps $BUILD_DEPS \
+RUN apk add --no-cache --update --virtual .build-deps $BUILD_DEPS \
     && docker-php-ext-configure gd --with-jpeg \
-    && docker-php-ext-install -j "$(nproc)" $PHP_EXTENSIONS \
-    && apk del .build-deps
+    && docker-php-ext-install -j "$(nproc)" $PHP_EXTENSIONS
 
 RUN apk add --no-cache --virtual .run-deps $RUN_DEPS
+
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
 
 # Copy the application code
 COPY . /app

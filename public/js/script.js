@@ -35,9 +35,23 @@ isCompanyCheckbox.addEventListener('change', (event) => {
 function handleSave() {
     const formData = Object.fromEntries(new FormData(form).entries());
     formData.items = collectItems()
-    formData.additionalInformaitons = additionalInformationsField.value;
+    formData.additional_informations = additionalInformationsField.value;
 
-    console.log(formData)
+    fetch("/new_invoice", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    }).then(response =>  {
+        return response.text()
+    }).then(result => {
+        console.log(result)
+    })
+}
+
+function addInvoice(formData) {
+
 }
 
 function collectItems() {

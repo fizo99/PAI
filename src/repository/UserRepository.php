@@ -2,6 +2,7 @@
 
 require_once 'Repository.php';
 require_once 'UserExistsException.php';
+require_once 'UserAbsentException.php';
 require_once __DIR__ . '/../models/User.php';
 
 class UserRepository
@@ -26,6 +27,23 @@ class UserRepository
             $user['password'],
             $user['user_id']
         );
+    }
+
+    public function getUserCompanyId(string $userId, PDO $existingConn = null): string
+    {
+        $conn = $existingConn == null ? Repository::connect() : $existingConn;
+        $stmt = $conn->prepare('
+            SELECT company_id FROM users WHERE user_id = :userId
+        ');
+        $stmt->bindParam(':userId', $userId);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result == false) {
+            throw new UserAbsentException("User with id ". $userId ."does not exist.");
+        }
+        return $result['company_id'];
     }
 
     public function addUser(User $user, string $companyId, PDO $existingConn = null): string
