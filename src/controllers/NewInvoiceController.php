@@ -7,6 +7,7 @@ require_once __DIR__ .'/../repository/UserRepository.php';
 require_once __DIR__ .'/../repository/AddressRepository.php';
 require_once __DIR__ .'/../repository/CompanyRepository.php';
 require_once __DIR__ .'/../repository/InvoiceRepository.php';
+require_once __DIR__ .'/../repository/ProductRepository.php';
 require_once __DIR__ .'/../repository/UserExistsException.php';
 
 class NewInvoiceController extends AppController {
@@ -15,6 +16,7 @@ class NewInvoiceController extends AppController {
     private $addressRepository;
     private $companyRepository;
     private $invoiceRepository;
+    private $productRepository;
 
     public function __construct()
     {
@@ -23,6 +25,7 @@ class NewInvoiceController extends AppController {
         $this->companyRepository = new CompanyRepository();
         $this->addressRepository = new AddressRepository();
         $this->invoiceRepository = new InvoiceRepository();
+        $this->productRepository = new ProductRepository();
     }
     function console_log( $data ){
         echo '<script>';
@@ -40,7 +43,7 @@ class NewInvoiceController extends AppController {
             if (!$this->isPost()) {
                 return $this->render('new_invoice');
             }
-            $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+            $contentType = $this->getContentType();
 
             if ($contentType === "application/json") {
                 $content = trim(file_get_contents("php://input"));
@@ -80,14 +83,19 @@ class NewInvoiceController extends AppController {
 
                 $invoiceId = $this->invoiceRepository->addInvoice($invoice, $conn);
 
+                $products = $decoded['products'];
+                $this->productRepository->addProducts($products,$invoiceId, $conn);
+
                 $conn->commit();
 
                 header('Content-type: application/json');
                 http_response_code(200);
-
-                echo json_encode($invoiceId);
+            }else{
+                http_response_code(400);
             }
         }
 
     }
+
+
 }

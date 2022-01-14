@@ -30,9 +30,9 @@ class Company {
     private $IBAN;
 
     public function __construct(
-        string $NIP,
-        string $name,
-        string $phoneNumber,
+        $NIP,
+        $name,
+        $phoneNumber,
         $email = null,
         $IBAN = null
     ) {

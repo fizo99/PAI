@@ -34,9 +34,10 @@ isCompanyCheckbox.addEventListener('change', (event) => {
 })
 function handleSave() {
     const formData = Object.fromEntries(new FormData(form).entries());
-    formData.items = collectItems()
+    formData.products = collectProducts()
     formData.additional_informations = additionalInformationsField.value;
 
+    activateSpinner();
     fetch("/new_invoice", {
         method: "POST",
         headers: {
@@ -44,25 +45,39 @@ function handleSave() {
         },
         body: JSON.stringify(formData)
     }).then(response =>  {
-        return response.text()
+        deactivateSpinner()
+        if(response.ok){
+            return response.text()
+        } else {
+            throw new Error('Something went wrong')
+        }
     }).then(result => {
-        console.log(result)
+        alert('Success!')
+    }).catch(err => {
+        alert(err.message)
     })
 }
 
-function addInvoice(formData) {
-
+function activateSpinner() {
+    const spinner = document.createElement('div');
+    const main = document.querySelector('main')
+    spinner.id = 'loading';
+    main.insertBefore(spinner, main.firstChild)
 }
 
-function collectItems() {
-    const items = []
+function deactivateSpinner() {
+    document.getElementById('loading').remove();
+}
+
+function collectProducts() {
+    const products = []
     const tableRows = Array.from(tableBody.children);
     tableRows.forEach(row => {
         const inputs = Array.from(row.children)
             .map(td => td.firstChild)
             .filter(elem => elem.tagName && elem.tagName.toLowerCase() === "input")
             .map(input => input.value)
-        items.push({
+        products.push({
             product_name: inputs[0],
             quantity: inputs[1],
             unit: inputs[2],
@@ -71,5 +86,5 @@ function collectItems() {
             brutto: inputs[5]
         })
     })
-    return items;
+    return products;
 }

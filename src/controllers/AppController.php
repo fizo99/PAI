@@ -32,4 +32,9 @@ class AppController {
         }
         print $output;
     }
+
+    public function getContentType(): string
+    {
+        return isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+    }
 }
