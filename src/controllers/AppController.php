@@ -1,5 +1,10 @@
 <?php
 
+require 'vendor/autoload.php';
+
+use PhpOffice\PhpWord\TemplateProcessor;
+
+
 class AppController {
     private $request;
 
@@ -20,6 +25,11 @@ class AppController {
 
     protected function render(string $template = null, array $variables = [])
     {
+        $phpword = new \PhpOffice\PhpWord\TemplateProcessor('public/word/template.docx');
+
+        $phpword->setValue('{name}','Santosh');
+        $phpword->saveAs('public/word/edited.docx');
+
         $templatePath = 'public/views/'. $template.'.php';
         $output = 'File not found';
 
