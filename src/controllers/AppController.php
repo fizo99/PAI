@@ -33,8 +33,14 @@ class AppController {
         print $output;
     }
 
-    public function getContentType(): string
+    protected function getContentType(): string
     {
         return isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+    }
+
+    protected function redirectToLogin(): void
+    {
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: {$url}/login");
     }
 }

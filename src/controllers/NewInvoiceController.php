@@ -27,18 +27,12 @@ class NewInvoiceController extends AppController {
         $this->invoiceRepository = new InvoiceRepository();
         $this->productRepository = new ProductRepository();
     }
-    function console_log( $data ){
-        echo '<script>';
-        echo 'console.log('. json_encode( $data ) .')';
-        echo '</script>';
-    }
 
     public function new_invoice()
     {
         session_start();
         if (!isset($_SESSION['userID'])) {
-            $url = "http://$_SERVER[HTTP_HOST]";
-            header("Location: {$url}/login");
+            $this->redirectToLogin();
         }else{
             if (!$this->isPost()) {
                 return $this->render('new_invoice');
@@ -96,6 +90,8 @@ class NewInvoiceController extends AppController {
         }
 
     }
+
+
 
 
 }
