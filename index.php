@@ -10,5 +10,6 @@ Router::post('my_invoices', 'MyInvoicesController');
 Router::post('new_invoice', 'NewInvoiceController');
 Router::post('login', 'LoginController');
 Router::post('register', 'RegisterController');
+Router::post('delete_invoice', 'MyInvoicesController');
 
 Router::run($path);

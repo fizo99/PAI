@@ -10,6 +10,7 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link rel="stylesheet" href="public/css/common.css">
     <link rel="stylesheet" href="public/css/my_invoices.css">
+    <script type="text/javascript" src="./public/js/invoicesList.js" defer></script>
     <script src="https://kit.fontawesome.com/6afad8acbe.js" crossorigin="anonymous"></script>
 </head>
 
@@ -41,135 +42,18 @@
                     <th class="w-10"></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td class="w-20">Jan Kowalski</td>
-                    <td class="w-20">9508440100</td>
-                    <td class="w-20">32300.00</td>
-                    <td class="w-20">25.07.2021</td>
-                    <td class="w-10"><i class="fas fa-file-download"></i></td>
-                    <td class="w-10"><i class="fas fa-trash"></i></td>
-                </tr>
-                <tr>
-                    <td class="w-20">Jan Kowalski</td>
-                    <td class="w-20">9508440100</td>
-                    <td class="w-20">32300.00</td>
-                    <td class="w-20">25.07.2021</td>
-                    <td class="w-10"><i class="fas fa-file-download"></i></td>
-                    <td class="w-10"><i class="fas fa-trash"></i></td>
-                </tr>
-                <tr>
-                    <td class="w-20">Jan Kowalski</td>
-                    <td class="w-20">9508440100</td>
-                    <td class="w-20">32300.00</td>
-                    <td class="w-20">25.07.2021</td>
-                    <td class="w-10"><i class="fas fa-file-download"></i></td>
-                    <td class="w-10"><i class="fas fa-trash"></i></td>
-                </tr>
-                <tr>
-                    <td class="w-20">Jan Kowalski</td>
-                    <td class="w-20">9508440100</td>
-                    <td class="w-20">32300.00</td>
-                    <td class="w-20">25.07.2021</td>
-                    <td class="w-10"><i class="fas fa-file-download"></i></td>
-                    <td class="w-10"><i class="fas fa-trash"></i></td>
-                </tr>
-                <tr>
-                    <td class="w-20">Jan Kowalski</td>
-                    <td class="w-20">9508440100</td>
-                    <td class="w-20">32300.00</td>
-                    <td class="w-20">25.07.2021</td>
-                    <td class="w-10"><i class="fas fa-file-download"></i></td>
-                    <td class="w-10"><i class="fas fa-trash"></i></td>
-                </tr>
-                <tr>
-                    <td class="w-20">Jan Kowalski</td>
-                    <td class="w-20">9508440100</td>
-                    <td class="w-20">32300.00</td>
-                    <td class="w-20">25.07.2021</td>
-                    <td class="w-10"><i class="fas fa-file-download"></i></td>
-                    <td class="w-10"><i class="fas fa-trash"></i></td>
-                </tr>
-                <tr>
-                    <td class="w-20">Jan Kowalski</td>
-                    <td class="w-20">9508440100</td>
-                    <td class="w-20">32300.00</td>
-                    <td class="w-20">25.07.2021</td>
-                    <td class="w-10"><i class="fas fa-file-download"></i></td>
-                    <td class="w-10"><i class="fas fa-trash"></i></td>
-                </tr>
-                <tr>
-                    <td class="w-20">Jan Kowalski</td>
-                    <td class="w-20">9508440100</td>
-                    <td class="w-20">32300.00</td>
-                    <td class="w-20">25.07.2021</td>
-                    <td class="w-10"><i class="fas fa-file-download"></i></td>
-                    <td class="w-10"><i class="fas fa-trash"></i></td>
-                </tr>
-                <tr>
-                    <td class="w-20">Jan Kowalski</td>
-                    <td class="w-20">9508440100</td>
-                    <td class="w-20">32300.00</td>
-                    <td class="w-20">25.07.2021</td>
-                    <td class="w-10"><i class="fas fa-file-download"></i></td>
-                    <td class="w-10"><i class="fas fa-trash"></i></td>
-                </tr>
-                <tr>
-                    <td class="w-20">Jan Kowalski</td>
-                    <td class="w-20">9508440100</td>
-                    <td class="w-20">32300.00</td>
-                    <td class="w-20">25.07.2021</td>
-                    <td class="w-10"><i class="fas fa-file-download"></i></td>
-                    <td class="w-10"><i class="fas fa-trash"></i></td>
-                </tr>
-                <tr>
-                    <td class="w-20">Jan Kowalski</td>
-                    <td class="w-20">9508440100</td>
-                    <td class="w-20">32300.00</td>
-                    <td class="w-20">25.07.2021</td>
-                    <td class="w-10"><i class="fas fa-file-download"></i></td>
-                    <td class="w-10"><i class="fas fa-trash"></i></td>
-                </tr>
-                <tr>
-                    <td class="w-20">Jan Kowalski</td>
-                    <td class="w-20">9508440100</td>
-                    <td class="w-20">32300.00</td>
-                    <td class="w-20">25.07.2021</td>
-                    <td class="w-10"><i class="fas fa-file-download"></i></td>
-                    <td class="w-10"><i class="fas fa-trash"></i></td>
-                </tr>
-                <tr>
-                    <td class="w-20">Jan Kowalski</td>
-                    <td class="w-20">9508440100</td>
-                    <td class="w-20">32300.00</td>
-                    <td class="w-20">25.07.2021</td>
-                    <td class="w-10"><i class="fas fa-file-download"></i></td>
-                    <td class="w-10"><i class="fas fa-trash"></i></td>
-                </tr>
-                <tr>
-                    <td class="w-20">Jan Kowalski</td>
-                    <td class="w-20">9508440100</td>
-                    <td class="w-20">32300.00</td>
-                    <td class="w-20">25.07.2021</td>
-                    <td class="w-10"><i class="fas fa-file-download"></i></td>
-                    <td class="w-10"><i class="fas fa-trash"></i></td>
-                </tr>
-                <tr>
-                    <td class="w-20">Jan Kowalski</td>
-                    <td class="w-20">9508440100</td>
-                    <td class="w-20">32300.00</td>
-                    <td class="w-20">25.07.2021</td>
-                    <td class="w-10"><i class="fas fa-file-download"></i></td>
-                    <td class="w-10"><i class="fas fa-trash"></i></td>
-                </tr>
-                <tr>
-                    <td class="w-20">Jan Kowalski</td>
-                    <td class="w-20">9508440100</td>
-                    <td class="w-20">32300.00</td>
-                    <td class="w-20">25.07.2021</td>
-                    <td class="w-10"><i class="fas fa-file-download"></i></td>
-                    <td class="w-10"><i class="fas fa-trash"></i></td>
-                </tr>
+            <tbody id="items-table-body">
+                <?php foreach ($invoices as $invoice): ?>
+                    <tr>
+                        <td class="w-20"><?= $invoice['buyer_name']; ?></td>
+                        <td class="w-20"><?= $invoice['nip']; ?></td>
+                        <td class="w-20"><?= $invoice['total_brutto_value']; ?></td>
+                        <td class="w-20"><?= $invoice['date']; ?></td>
+                        <td class="w-10" onclick="handleSearch()"><i class="fas fa-file-download"></i></td>
+                        <td class="w-10" onclick="deleteInvoice(event)"><i class="fas fa-trash"></i></td>
+                        <input type="hidden" value="<?= $invoice['invoice_id']; ?>">
+                    </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </main>

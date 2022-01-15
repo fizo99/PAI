@@ -19,16 +19,21 @@ class Router {
         self::$routes[$url] = $view;
     }
 
-    public static function run ($url) {
-        $action = explode("/", $url)[0];
+    public static function run($url)
+    {
+        $urlParts = explode("/", $url);
+        $action = $urlParts[0];
+
         if (!array_key_exists($action, self::$routes)) {
             die("Wrong url!");
         }
 
-        $controllerName = self::$routes[$action];
-        $controller = new $controllerName;
+        $controller = self::$routes[$action];
+        $object = new $controller;
         $action = $action ?: 'index';
 
-        $controller->$action();
+        $id = $urlParts[1] ?? '';
+
+        $object->$action($id);
     }
 }

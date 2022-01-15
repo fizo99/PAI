@@ -49,7 +49,7 @@ function handleSave() {
         if(response.ok){
             return response.text()
         } else {
-            throw new Error('Something went wrong')
+            throw new Error('Something went wrong' + response.text())
         }
     }).then(result => {
         alert('Success!')
