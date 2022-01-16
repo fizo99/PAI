@@ -49,7 +49,7 @@
                         <td class="w-20"><?= $invoice['nip']; ?></td>
                         <td class="w-20"><?= $invoice['total_brutto_value']; ?></td>
                         <td class="w-20"><?= $invoice['date']; ?></td>
-                        <td class="w-10" onclick="handleSearch()"><i class="fas fa-file-download"></i></td>
+                        <td class="w-10" onclick="downloadInvoice(event)"><i class="fas fa-file-download"></i></td>
                         <td class="w-10" onclick="deleteInvoice(event)"><i class="fas fa-trash"></i></td>
                         <input type="hidden" value="<?= $invoice['invoice_id']; ?>">
                     </tr>
