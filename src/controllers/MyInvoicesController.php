@@ -7,6 +7,8 @@ require_once __DIR__ . '/../repository/InvoiceRepository.php';
 require_once __DIR__ . '/../models/Invoice.php';
 require_once __DIR__ . '/../repository/UserExistsException.php';
 
+@ini_set ('display_errors', 'on');
+
 class MyInvoicesController extends AppController
 {
 
@@ -59,8 +61,22 @@ class MyInvoicesController extends AppController
         } else {
             $details = $this->invoiceRepository->getInvoiceDetails($id);
             $products = $this->invoiceRepository->getInvoiceProducts($id);
+            $totalBruttoPrice = $this->invoiceRepository->getTotalBruttoValueForInvoice($id);
 
-            var_dump($details);
+            $i = 1;
+            $productsValues = array();
+            foreach ($products as $product) {
+                array_push($productsValues,
+                    ['productNr' => $i++,
+                        'productName' => $product['name'],
+                        'quantity' => $product['quantity'],
+                        'unit' => $product['unit'],
+                        'nettoPrice' => $product['netto_price'],
+                        'taxPercent' => $product['tax_percent'],
+                        'taxAmount' => $product['tax_amount'],
+                        'bruttoPrice' => $product['brutto_price']
+                    ]);
+            }
 
             $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('public/word/template.docx');
             $templateProcessor->setValue('invoiceType', 'VAT'); //TODO
@@ -84,22 +100,18 @@ class MyInvoicesController extends AppController
             $templateProcessor->setValue('buyerZipCode', $details['buyer_zip_code']);
             $templateProcessor->setValue('buyerCity', $details['buyer_city']);
 
-            $templateProcessor->saveAs('public/word/result.docx');
-        }
-//            foreach ($phpWord->getSections() as $section) {
-//                foreach ($section->getElements() as $element) {
-//                    if ($element instanceof PhpOffice\PhpWord\Element\Text) {
-//                        dd('h');
-//                        echo($element->getText() . "<br><br>");
-//
-//                    } else {
-//
-//                    }
-//                }
-//            }
-        }
+            $templateProcessor->cloneRowAndSetValues('productNr', $productsValues);
+            $templateProcessor->setValue('totalBruttoPrice', $totalBruttoPrice);
+            $templateProcessor->setValue('sellerIban', $details['seller_iban']);
 
+            $filename = $templateProcessor->save();
 
+            header("Content-Disposition: attachment; filename='myFile.docx'");
+            readfile($filename);
+            unlink($filename);
+        }
     }
+
+}
 
 

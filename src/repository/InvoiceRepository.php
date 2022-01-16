@@ -61,7 +61,7 @@ class InvoiceRepository
                 unit,
                 netto_price,
                 tax_percent,
-                round(netto_price + (netto_price * (tax_percent::numeric / 100::numeric)) - netto_price, 2) vat_amount,
+                round(netto_price + (netto_price * (tax_percent::numeric / 100::numeric)) - netto_price, 2) tax_amount,
                 round(netto_price + (netto_price * (tax_percent::numeric / 100::numeric)),2) brutto_price
             from invoices_products
                 JOIN products on invoices_products.product_id = products.product_id
@@ -87,6 +87,19 @@ class InvoiceRepository
 
         $invoiceList = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $invoiceList;
+    }
+
+    public function getTotalBruttoValueForInvoice(string $invoiceId, PDO $existingConn = null)
+    {
+        $conn = $existingConn == null ? Repository::connect() : $existingConn;
+        $stmt = $conn->prepare('
+            SELECT * FROM invoices_total_brutto_value(:invoice_id)
+        ');
+        $stmt->bindParam(":invoice_id", $invoiceId);
+
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total_brutto_value'];
     }
 
     public function getAllInvoicesForUser(string $userId,  PDO $existingConn = null)

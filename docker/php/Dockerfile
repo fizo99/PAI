@@ -36,7 +36,7 @@ RUN pecl install xdebug \
     && docker-php-ext-enable xdebug
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
-RUN composer require phpoffice/phpword && composer install
+
 # Copy the application code
 COPY . /app
 

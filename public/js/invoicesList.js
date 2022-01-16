@@ -49,15 +49,23 @@ function downloadInvoice(event) {
     }).then(response =>  {
         //deactivateSpinner()
         if(response.ok){
-            return response.text()
+            return response.blob()
         } else {
             throw new Error('Something went wrong' + response.text())
         }
     }).then(result => {
-        //window.location.reload();
-        console.log(result)
-        list.innerHTML += result;
+        downloadDoc(result)
     }).catch(err => {
         alert(err.message);
     })
+}
+
+function downloadDoc(doc) {
+    var url = URL.createObjectURL(doc);
+    var tempLink = document.createElement('a');
+    tempLink.href = url;
+    tempLink.download = "invoice.docx";
+    document.body.appendChild(tempLink);
+    tempLink.click();
+    tempLink.remove();
 }
