@@ -63,7 +63,7 @@ class NewInvoiceController extends AppController {
                         $decoded['phone_number'],
                     ),$addressId,$conn);
                 }
-
+                //$invoiceTypeId = $this->invoiceRepository->getInvoiceType($decoded['invoice_type'],$conn);
                 $invoice = new Invoice(
                     $buyerId,
                     $sellerId,
@@ -72,7 +72,9 @@ class NewInvoiceController extends AppController {
                     $decoded['invoice_nr'],
                     $decoded['payment_method'],
                     $decoded['additional_informations'],
-                    $userId
+                    $userId,
+                    $decoded['invoice_type'],
+                    "UNPAID"
                 );
 
                 $invoiceId = $this->invoiceRepository->addInvoice($invoice, $conn);

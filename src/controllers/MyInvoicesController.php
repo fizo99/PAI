@@ -29,10 +29,33 @@ class MyInvoicesController extends AppController
         } else {
             $userId = $_SESSION['userID'];
             $invoices = $this->invoiceRepository->getInvoicesForInvoicesListView($userId);
-            return $this->render("my_invoices", ['invoices' => $invoices]);
-//            if (!$this->isPost()) {
-//                return $this->render('my_invoices');
-//            }
+            $invoiceStates = $this->invoiceRepository->getAllInvoiceStates();
+
+            return $this->render("my_invoices", ['invoices' => $invoices, 'invoiceStates' => $invoiceStates]);
+        }
+
+    }
+
+    public function update_state($id)
+    {
+        session_start();
+        if (!isset($_SESSION['userID'])) {
+            $url = "http://$_SERVER[HTTP_HOST]";
+            header("Location: {$url}/login");
+        } else {
+            $contentType = $this->getContentType();
+
+            if ($contentType === "application/json") {
+                $content = trim(file_get_contents("php://input"));
+                $decoded = json_decode($content, true);
+                if($this->invoiceRepository->updateState($id, $decoded['newState'])){
+                    http_response_code(200);
+                }else {
+                    http_response_code(400);
+                }
+            }else{
+                http_response_code(400);
+            }
 
         }
 
@@ -78,8 +101,10 @@ class MyInvoicesController extends AppController
                     ]);
             }
 
+
+
             $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('public/word/template.docx');
-            $templateProcessor->setValue('invoiceType', 'VAT'); //TODO
+            $templateProcessor->setValue('invoiceType', $details['invoice_type']);
             $templateProcessor->setValue('invoiceDate', $details['date']);
             $templateProcessor->setValue('invoiceNumber', $details['number']);
             $templateProcessor->setValue('paymentMethod', $details['payment_method']);

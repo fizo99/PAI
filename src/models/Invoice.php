@@ -72,6 +72,24 @@ class Invoice {
     private $paymentMethod;
     private $additionalInformations;
     private $userId;
+    private $invoiceType;
+    private $invoiceState;
+
+    /**
+     * @return mixed
+     */
+    public function getInvoiceState()
+    {
+        return $this->invoiceState;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInvoiceType()
+    {
+        return $this->invoiceType;
+    }
 
     /**
      * @param $buyerId
@@ -83,7 +101,7 @@ class Invoice {
      * @param $additionalInformations
      * @param $userId
      */
-    public function __construct($buyerId, $sellerId, $place, $date, $number, $paymentMethod, $additionalInformations, $userId)
+    public function __construct($buyerId, $sellerId, $place, $date, $number, $paymentMethod, $additionalInformations, $userId, $invoiceType, $invoiceState)
     {
         $this->buyerId = $buyerId;
         $this->sellerId = $sellerId;
@@ -93,6 +111,8 @@ class Invoice {
         $this->paymentMethod = $paymentMethod;
         $this->additionalInformations = $additionalInformations;
         $this->userId = $userId;
+        $this->invoiceType = $invoiceType;
+        $this->invoiceState = $invoiceState;
     }
 
 }

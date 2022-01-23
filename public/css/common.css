@@ -38,7 +38,11 @@ input {
     color: #7F7F7F;
 }
 
-input:focus, input:active{
+select {
+    border: none;
+}
+
+select:focus, option:focus, select:active, option:active, input:focus, input:active{
     outline-color: #395FF6;
 }
 
@@ -262,3 +266,4 @@ table tbody tr {
   a{
       text-decoration: none;
   }
+

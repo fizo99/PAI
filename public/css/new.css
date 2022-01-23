@@ -121,6 +121,10 @@ form > * {
     margin-right: 6px;
 }
 
+#nip-search-container input{
+    width: 90%;
+}
+
 #buyer-details-label::before {
     display:inline-block;
     text-align: center;
@@ -145,6 +149,14 @@ form > * {
     margin-right: 6px;
 }
 
+select {
+    border: none;
+}
+
+select:focus, option:focus, select:active, option:active, input:focus, input:active{
+    outline-color: #395FF6;
+}
+
 #loading {
     display: inline-block;
     width: 50px;
@@ -165,3 +177,25 @@ form > * {
 @-webkit-keyframes spin {
     to { -webkit-transform: rotate(360deg); }
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+input[type=number]:hover {
+
+}
+
+#nip-search-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+

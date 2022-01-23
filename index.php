@@ -12,5 +12,6 @@ Router::post('login', 'LoginController');
 Router::post('register', 'RegisterController');
 Router::post('delete_invoice', 'MyInvoicesController');
 Router::post('download_invoice', 'MyInvoicesController');
+Router::post('update_state', 'MyInvoicesController');
 
 Router::run($path);

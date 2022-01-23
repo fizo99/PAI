@@ -16,6 +16,44 @@ document.addEventListener('DOMContentLoaded', (event) => {
     searchBar.addEventListener('keyup', handleSearch)
 });
 
+function handleAction(event) {
+    if(event.target.value === "delete"){
+        deleteInvoice(event);
+    }else if(event.target.value === "download_doc"){
+        downloadInvoice(event);
+    }
+}
+
+function updateInvoiceState(event) {
+    const newState = event.target.value;
+
+    const row = event.target.parentElement.parentElement;
+    const rowChildren = row.children;
+    const invoiceId = rowChildren[rowChildren.length - 1].value
+
+    activateSpinner();
+    fetch("/update_state/" + invoiceId, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            newState: newState
+        })
+    }).then(response =>  {
+        deactivateSpinner()
+        if(response.ok){
+            return response.text()
+        } else {
+            throw new Error('Something went wrong' + response.text())
+        }
+    }).then(result => {
+        event.target.parentElement.value = newState;
+    }).catch(err => {
+        alert(err.message)
+    })
+}
+
 function deleteInvoice(event) {
     const row = event.target.parentElement.parentElement;
     const rowChildren = row.children;

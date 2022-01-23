@@ -9,7 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link rel="stylesheet" href="public/css/common.css">
+    <link rel="stylesheet" href="public/css/new.css">
     <link rel="stylesheet" href="public/css/my_invoices.css">
+    <script type="text/javascript" src="./public/js/common.js" defer></script>
     <script type="text/javascript" src="./public/js/invoicesList.js" defer></script>
     <script src="https://kit.fontawesome.com/6afad8acbe.js" crossorigin="anonymous"></script>
 </head>
@@ -35,6 +37,7 @@
             <thead>
                 <tr>
                     <th class="w-20">Buyer</th>
+                    <th class="w-20">Number</th>
                     <th class="w-20">NIP</th>
                     <th class="w-20">Brutto Value</th>
                     <th class="w-20">Date</th>
@@ -43,14 +46,29 @@
                 </tr>
             </thead>
             <tbody id="items-table-body">
+                <?php require_once "translate.php" ?>
                 <?php foreach ($invoices as $invoice): ?>
                     <tr>
                         <td class="w-20"><?= $invoice['buyer_name']; ?></td>
+                        <td class="w-20"><?= $invoice['number']; ?></td>
                         <td class="w-20"><?= $invoice['nip']; ?></td>
                         <td class="w-20"><?= $invoice['total_brutto_value']; ?></td>
                         <td class="w-20"><?= $invoice['date']; ?></td>
-                        <td class="w-10" onclick="downloadInvoice(event)"><i class="fas fa-file-download"></i></td>
-                        <td class="w-10" onclick="deleteInvoice(event)"><i class="fas fa-trash"></i></td>
+                        <td class="w-10">
+                            <select name="state" onchange="updateInvoiceState(event);" required>
+                                <option value="" disabled selected hidden><?= translateStatePL($invoice['state']); ?></option>
+                                <?php foreach ($invoiceStates as $state): ?>
+                                    <option value=<?=$state?>><?= translateStatePL($state); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                        <td class="w-10">
+                            <select name="action" onchange="handleAction(event);" required>
+                                <option value="" disabled selected hidden>Akcja</option>
+                                <option value="delete">Usuń</option>
+                                <option value="download_doc">Pobierz jako doc</option>
+                            </select>
+                        </td>
                         <input type="hidden" value="<?= $invoice['invoice_id']; ?>">
                     </tr>
                 <?php endforeach; ?>
