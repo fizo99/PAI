@@ -11,7 +11,7 @@ class UserRepository
     {
         $conn = $existingConn == null ? Repository::connect() : $existingConn;
         $stmt = $conn->prepare('
-            SELECT * FROM users WHERE email = :email
+            SELECT email,password,user_id,is_demo::text FROM users WHERE email = :email
         ');
         $stmt->bindParam(':email', $email);
         $stmt->execute();
@@ -25,6 +25,7 @@ class UserRepository
         return new User(
             $user['email'],
             $user['password'],
+            $user['is_demo'],
             $user['user_id']
         );
     }
@@ -55,14 +56,15 @@ class UserRepository
 //        }
 
         $stmt = $conn->prepare('
-            INSERT INTO users (email,password,company_id)
-            VALUES (?, ?, ?)
+            INSERT INTO users (email,password,company_id,is_demo)
+            VALUES (?, ?, ?, ?)
         ');
 
         $stmt->execute([
             $user->getEmail(),
             $user->getPassword(),
-            $companyId
+            $companyId,
+            $user->getIsDemo()
         ]);
 
         return $conn->lastInsertId();

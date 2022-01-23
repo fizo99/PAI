@@ -43,6 +43,9 @@ class LoginController extends AppController {
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
 
+        $role = $user->getIsDemo() == "true" ? "demo" : "standard";
+        setcookie('role', $role, time()+(86400 * 30), "/");
+
         $_SESSION['userID'] = $user->getUserId();
 
         $url = "http://$_SERVER[HTTP_HOST]";

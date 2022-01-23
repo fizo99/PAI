@@ -25,7 +25,14 @@
                 }
                 ?>
             </div>
-            <label>Account Details</label>
+
+            <div class="flex row hor-center ver-space-between">
+                <label>Account Details</label>
+                <div class="flex row hor-center ver-center">
+                    <label for="is_demo">Demo</label>
+                    <input class="checkbox-round" type="checkbox" id="is_demo" name="is_demo" checked>
+                </div>
+            </div>
             <input type="text" name="email" placeholder="Email">
             <input type="password" name="password" placeholder="Password">
             <input type="password" name="password-repeat" placeholder="Repeat Password">

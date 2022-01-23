@@ -59,6 +59,9 @@ class RegisterController extends AppController
             return $this->render('register', ['messages' => [$ex->getMessage()]]);
         }
 
+        $role = $user->getIsDemo() == "true" ? "demo" : "standard";
+        setcookie('role', $role, time()+(86400 * 30), "/");
+
         session_start();
         $_SESSION['userID'] = $userId;
 
