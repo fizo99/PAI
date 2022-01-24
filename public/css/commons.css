@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+:root {
+    --logo: #3634C5;
+    --nav-background: #FFFFFF;
+    --nav-icon-inactive: #96A0B5;
+    --nav-text-inactive: #242E4F;
+    --nav-active: #3634C5;
+
+    --main-background: #F7F9FB;
+    --container-background: #FFFFFF;
+    --text-primary: #061237;
+    --text-secondary: #9CA6B9;
+    --text-color-logo: #3634C5;
+
+    --input-background: #FAFBFC;
+    --input-border: #ECEFF4;
+    --input-text: #061237;
+    --input-text-placeholder: #96A0B5;
+}
+
+* {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#logo {
+    font-weight: bold;
+    font-size: 1.3em;
+    color: var(--logo);
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 10vh;
+    background-color: var(--nav-background);
+}
+
+main {
+    height: 90vh;
+    background-color: var(--main-background);
+}
+
+nav, main {
+    padding: 0 1.5em;
+}
+
+nav section {
+    height: 100%;
+    display: inherit;
+    justify-content: center;
+    align-items: center;
+}
+
+nav a {
+    height: 100%;
+    display: inherit;
+    justify-content: center;
+    align-items: center;
+    padding: 0.7em;
+    color: var(--nav-text-inactive);
+    text-decoration: none;
+}
+
+nav a i {
+    color: var(--nav-icon-inactive);
+}
+
+#nav-buttons-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#nav-buttons-container a {
+    margin-left: 1.5em;
+}
+
+#nav-buttons-container a:last-child {
+    margin-left: auto;
+}
+
+#nav-buttons-container a i {
+    color: var(--nav-icon-inactive);
+}
+
+#nav-buttons-container a span {
+    margin-left: 0.5em;
+    line-height: 16px;
+    color: var(--nav-text-inactive);
+}
+
+.nav-active > * {
+    color: var(--nav-active) !important;
+}
+
+.nav-active {
+    border-bottom: 2px var(--nav-active) solid;
+}
+
+main {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+#loading {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, .3);
+    border-radius: 50%;
+    border-top-color: #395FF6;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+@keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+
+/*INPUT*/
+input,select,textarea {
+    padding: 0.7em;
+    background-color: var(--input-background);
+    border: 1px solid var(--input-border);
+    border-radius: 15px;
+    color: var(--input-text);
+    font-weight: 600;
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--input-text-placeholder);
+}
+input:active, input:focus, textarea:active, textarea:focus {
+    outline-color: var(--logo);
+}
+
+.clear {
+    clear: both;
+}
+
+.flex {
+    display: flex;
+}
+.row {
+    flex-direction: row;
+}
+.col {
+    flex-direction: column;
+}
+.hor-center {
+    justify-content: center;
+}
+.ver-center {
+    align-items: center;
+}
+.hor-space-between {
+    justify-content: space-between;
+}
+.w100 {
+    width: 100%;
+}
+.w50 {
+    width: 50%;
+}
+.w40 {
+    width: 40%;
+}
+.w45 {
+    width: 45%;
+}
+.w90 {
+    width: 90%;
+}
+.w80 {
+    width: 80%;
+}
+.w20 {
+    width: 20%;
+}
+.w10 {
+    width: 10%;
+}
+.w30 {
+    width: 30%;
+}
+.w5 {
+    width: 5%;
+}
+
+.mt-15 {
+    margin-top: 1.5em;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.btn-blue {
+    background-color: var(--logo);
+    border-radius: 15px;
+    color: var(--main-background);
+    border: none;
+    min-height: 3em;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+

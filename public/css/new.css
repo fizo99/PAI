@@ -1,48 +1,44 @@
-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    width: 70%;
-    /* background-color: #F8F8FA; */
-}
-form label {
-    color: #395FF6;
-    margin-top: 12px;
-}
-form label:first-child {
-    margin-top: 0px;
-}
-form input {
-    padding: 8px 8px;
-}
-form > * {
-    margin-top: 6px;
-}
-#street {
-    width: 100%;
-}
-#street-name {
-    width: 75%;
-}
-#street-nr {
-    margin-left: 4%;
-    width: 20%;
-}
-
 #form-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
+    height: 100%;
 }
-#form-container button {
-    height: 36px;
-    width: 10%;
+#left-bar {
+    width: 75vw;
+    height: 100%;
+    background-color: var(--container-background);
+}
+#right-bar {
+    width: 25vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: var(--container-background);
+    margin-left: 1em;
+}
+
+#left-bar, #right-bar {
+    padding: 1.5em;
+    border-radius: 15px;
+}
+
+#invoice-details-container {
+    display: flex;
+    flex-direction: column;
+}
+#invoice-details-container section {
+    flex-direction: row;
+}
+#invoice-form section:first-child {
+    margin-top: 0;
+}
+#invoice-details-container section:last-child {
+    margin-left: auto;
+}
+#invoice-details-container input,select{
+    margin-right:0.5em;
+    margin-top: 0.3em;
 }
 
 #buyer-details-container {
@@ -50,152 +46,79 @@ form > * {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    row-gap: 6px;
-    column-gap: 10px;
-}
-#buyer-details-container > * {
-    width: 49%;
 }
 
-
-.invoice-details-container {
+#buyer-details-container input[type='text'],
+#buyer-details-container input[type='number']{
+    margin-top: 0.5em;
+}
+section label {
+    margin-bottom: 0.3em;
+}
+table {
+    table-layout: fixed;
+    border-collapse:separate;
+    border-spacing: 0.3em 0.5em;
+}
+#invoice-form {
     display: flex;
-    flex-direction: row;
-    width:100%;
-    column-gap: 1%;
+    flex-direction: column;
+    height: 100%;
 }
-.invoice-details-container > * {
-    width: 24%;
+#invoice-items-container {
+    flex-grow: 1;
+    overflow: auto;
+    border-bottom: 2px var(--input-border) solid;
 }
 
-.street-container {
-    display: flex;
-    flex-direction: row;
+thead th {
+    position: sticky;
+    top: 0; z-index: 1;
+    background-color: var(--container-background);
+    line-height: 1.5em;
 }
-.street-container input:first-child {
+table input {
     width: 100%;
-    margin-right: 6px;
 }
-.street-container input:nth-child(2){
-    width: 20%;
+table th {
+    text-align: left;
+    padding-bottom: 0.5em;
 }
-.total-container {
-    color: #000000;
-    background-color: #EEF1FF;
-    margin-top: 6px;
-    padding: 10px 10px;
+
+table tr {
+    margin-top: 0.5em;
+}
+
+#additional-informations {
+    min-height: 15vh;
+    resize: none;
+}
+
+#right-bar {
+    justify-content: space-between;
+}
+#right-bar section{
+    margin-bottom: auto;
+}
+#right-bar textarea{
+    margin-top: auto;
+}
+#summary {
+    display: flex;
+    flex-direction: row;
+}
+#summary > section {
+    display: flex;
+    flex-direction: column;
+}
+#summary section:first-of-type {
+    margin-right: auto;
+}
+#summary section:last-of-type > span {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-
-
-
-
-#items-label > i{
-    margin-left: 10px;
-    font-size: 12px;
+#summary section:last-of-type > span > span{
+    margin-left: 0.5em;
 }
-
-
-#additional-informations{
-    height: 20%;
-    resize: none;
-    padding: 12px;
-    border: none;
-    outline-color: #395FF6;
-}
-#additional-informations::placeholder {
-    color: #CBD0D7;
-}
-
-#items-label::before {
-    display:inline-block;
-    text-align: center;
-    content: "3";
-    width: 15px;
-    background: blue;
-    border-radius: 50%;
-    font-size: 13px;
-    color:white;
-    margin-right: 6px;
-}
-
-#nip-search-container input{
-    width: 90%;
-}
-
-#buyer-details-label::before {
-    display:inline-block;
-    text-align: center;
-    content: "2";
-    width: 15px;
-    background: blue;
-    border-radius: 50%;
-    font-size: 13px;
-    color:white;
-    margin-right: 6px;
-}
-
-#invoice-details-label::before {
-    display:inline-block;
-    text-align: center;
-    content: "1";
-    width: 15px;
-    background: blue;
-    border-radius: 50%;
-    font-size: 13px;
-    color:white;
-    margin-right: 6px;
-}
-
-select {
-    border: none;
-}
-
-select:focus, option:focus, select:active, option:active, input:focus, input:active{
-    outline-color: #395FF6;
-}
-
-#loading {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    border: 3px solid rgba(255,255,255,.3);
-    border-radius: 50%;
-    border-top-color: #395FF6;
-    animation: spin 1s ease-in-out infinite;
-    -webkit-animation: spin 1s ease-in-out infinite;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-}
-
-@keyframes spin {
-    to { -webkit-transform: rotate(360deg); }
-}
-@-webkit-keyframes spin {
-    to { -webkit-transform: rotate(360deg); }
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-}
-
-input[type=number] {
-    -moz-appearance:textfield; /* Firefox */
-}
-
-input[type=number]:hover {
-
-}
-
-#nip-search-container{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-

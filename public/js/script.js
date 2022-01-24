@@ -44,6 +44,7 @@ isCompanyCheckbox.addEventListener('change', (event) => {
 
 function handleSave() {
     const formData = Object.fromEntries(new FormData(form).entries());
+    console.log(formData)
     formData.products = collectProducts();
     formData.additional_informations = additionalInformationsField.value;
 
@@ -188,18 +189,20 @@ function validateRecursive(node) {
 function handleCalculateTotal() {
     const rows = tableBody.children
     const totalBrutto = Array.from(rows)
-        .map(row => row.children[5].children[0])
-        .map(element => element.value)
-        .filter(element => !isNaN(parseFloat(element)))
-        .map(value => parseFloat(value))
-        .reduce((val1, val2) => val1 + val2, 0)
+        .map(row => [row.children[1].children[0].value,row.children[5].children[0].value])
+        .filter(element => !isNaN(parseFloat(element[0])) && !isNaN(parseFloat(element[1])))
+        .map(value => [parseFloat(value[0]),parseFloat(value[1])])
+        .reduce(function(previousValue, currentValue, index, array) {
+            return previousValue + currentValue[0] * currentValue[1];
+        }, 0);
 
     const totalNetto = Array.from(rows)
-        .map(row => row.children[3].children[0])
-        .map(element => element.value)
-        .filter(element => !isNaN(parseFloat(element)))
-        .map(value => parseFloat(value))
-        .reduce((val1, val2) => val1 + val2, 0)
+        .map(row => [row.children[1].children[0].value,row.children[3].children[0].value])
+        .filter(element => !isNaN(parseFloat(element[0])) && !isNaN(parseFloat(element[1])))
+        .map(value => [parseFloat(value[0]),parseFloat(value[1])])
+        .reduce(function(previousValue, currentValue, index, array) {
+            return previousValue + currentValue[0] * currentValue[1];
+        }, 0);
 
     totalBruttoField.innerText = round(totalBrutto);
     totalNettoField.innerText = round(totalNetto);
