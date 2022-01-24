@@ -15,6 +15,8 @@ class LogoutController extends AppController {
         session_unset();
         session_destroy();
 
+        setcookie("role", "", time()-3600);
+
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/login");
     }

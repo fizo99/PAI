@@ -5,10 +5,17 @@ class User {
     private $password;
     private $userId;
     private $companyId;
+    private $isDemo;
+
+    public function getIsDemo(): string
+    {
+        return $this->isDemo;
+    }
 
     public function __construct(
         string $email,
         string $password,
+        string $isDemo,
         string $userId = null,
         string $companyId = null
     ) {
@@ -16,6 +23,7 @@ class User {
         $this->password = $password;
         $this->userId = $userId;
         $this->companyId = $companyId;
+        $this->isDemo = $isDemo;
     }
 
     public function getUserId(): ?string

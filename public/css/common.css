@@ -228,6 +228,29 @@ table input {
     width: 100%;
 }
 
+.flex {
+    display: flex;
+}
+.row {
+    flex-direction: row;
+}
+.ver-center {
+    justify-content: center;
+}
+.hor-center {
+    align-items: center;
+}
+.ver-space-between {
+    justify-content: space-between;
+}
+
+#is_demo {
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+}
+
 table tbody tr td:first-child {
     display: flex;
     flex-direction: row;

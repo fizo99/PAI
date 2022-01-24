@@ -101,9 +101,12 @@ class MyInvoicesController extends AppController
                     ]);
             }
 
+            if(strcmp($_COOKIE['role'], "demo") == 0) {
+                $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('public/word/template-watermark.docx');
+            }else{
+                $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('public/word/template.docx');
+            }
 
-
-            $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('public/word/template.docx');
             $templateProcessor->setValue('invoiceType', $details['invoice_type']);
             $templateProcessor->setValue('invoiceDate', $details['date']);
             $templateProcessor->setValue('invoiceNumber', $details['number']);

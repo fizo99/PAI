@@ -6,7 +6,8 @@ class PostArrayObjectFactory
     {
         $email = $_POST['email'];
         $password = $_POST['password'];
-        return new User($email, md5($password));
+        $isDemo = $_POST['is_demo'] == null ? "false" : "true";
+        return new User($email, md5($password), $isDemo);
     }
     static function createCompany(): Company
     {
