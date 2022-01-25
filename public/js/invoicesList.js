@@ -95,10 +95,8 @@ function downloadInvoice(event) {
             throw new Error('Something went wrong' + response.text())
         }
     }).then(result => {
-        spinnerSucces()
-        setTimeout(() => {
-            downloadDoc(result)
-        },1000);
+        deactivateSpinner();
+        downloadDoc(result);
     }).catch(err => {
         spinnerFailure();
         console.log(err.message);
