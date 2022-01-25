@@ -1,49 +1,50 @@
 main {
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-
 form {
     display: flex;
-    flex-direction: column;;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 40vw;
 }
-form > * {
+#logo {
+    font-size: 5em;
+    letter-spacing: 0.15em;
+}
+form label {
+    margin-top: 0.2em;
+}
+form input {
+    margin-top: 0.3em;
+    padding: 0.5em 1em 0.5em 1em;
+    flex-grow: 1;
+}
+form button {
+    margin-top: 0.4em;
+    width: 30%;
+}
+form section {
+    display: flex;
+    flex-direction: column;
     width: 100%;
 }
-
-input {
-    margin-top: 5px;
-    max-height: 25px;
-    padding: 15px 15px;
+#is_demo {
+    margin-left: 0.5em;
+}
+form a {
+    text-decoration: none;
+    color: var(--logo);
+    margin-top: 0.4em;
+    font-weight: bold;
 }
 
-label {
-    display: block;
-    margin-top: 5px;
-}
-
-#street{
-    display: flex;
-    flex-direction: row;
-}
-
-#street-nr {
-    margin-left: 5px;
-}
-#street-name {
-    width: 80%;
-}
-
-button {
-    margin-top: 10px;
-    width: 30%;
-    padding: 10px;
-}
-span {
-    font-size: 86px;
-    color: #395FF6;
+main form {
+    border-radius: 15px;
+    background-color: var(--container-background);
+    padding: 1em;
 }

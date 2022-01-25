@@ -23,7 +23,6 @@ itemAddButton.addEventListener('click', (event) => {
 
 function handleDeleteRow(event) {
     if (tableBody.children.length === 1) {
-        console.log(tableBody.children)
         return
     }
     event.target.parentElement.parentElement.remove();
@@ -44,7 +43,6 @@ isCompanyCheckbox.addEventListener('change', (event) => {
 
 function handleSave() {
     const formData = Object.fromEntries(new FormData(form).entries());
-    console.log(formData)
     formData.products = collectProducts();
     formData.additional_informations = additionalInformationsField.value;
 
@@ -97,6 +95,7 @@ function findNIP() {
         alert("Invalid NIP number")
         return;
     }
+    activateSpinner();
     const date = new Date(Date.now()).toISOString().substr(0, 10);
     fetch("https://wl-api.mf.gov.pl/api/search/nip/" + nip + "?date=" + date)
         .then(response => {
@@ -104,21 +103,21 @@ function findNIP() {
                 return response.json();
             }
         }).then(result => {
-        const subject = result.result.subject;
-        const address = subject.residenceAddress !== null
-            ? subject.residenceAddress.split(",")
-            : subject.workingAddress.split(",")
-        console.log(address)
-        const streetPart = address[0].split(" ")
-        const cityPart = address[1].split(" ")
-        console.log(cityPart)
-        document.getElementById('invoice-company-name').value = subject.name;
-        document.getElementById('invoice-street-name').value = streetPart.slice(0, streetPart.length - 1).join(" ");
-        document.getElementById('invoice-street-nr').value = streetPart[streetPart.length - 1];
-        document.getElementById('invoice-zip').value = cityPart[1];
-        document.getElementById('invoice-city').value = cityPart.slice(2).join(" ");
+            const subject = result.result.subject;
+            const address = subject.residenceAddress !== null
+                ? subject.residenceAddress.split(",")
+                : subject.workingAddress.split(",")
+            const streetPart = address[0].split(" ")
+            const cityPart = address[1].split(" ")
+            document.getElementById('invoice-company-name').value = subject.name;
+            document.getElementById('invoice-street-name').value = streetPart.slice(0, streetPart.length - 1).join(" ");
+            document.getElementById('invoice-street-nr').value = streetPart[streetPart.length - 1];
+            document.getElementById('invoice-zip').value = cityPart[1];
+            document.getElementById('invoice-city').value = cityPart.slice(2).join(" ");
     }).catch(err => {
-        console.log(err.message);
+        alert(err.message);
+    }).finally(() => {
+        deactivateSpinner();
     })
 }
 

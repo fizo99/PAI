@@ -17,6 +17,8 @@
     --input-border: #ECEFF4;
     --input-text: #061237;
     --input-text-placeholder: #96A0B5;
+
+    --lightblue: #F7F9FB;
 }
 
 * {
@@ -64,6 +66,9 @@ nav a {
     padding: 0.7em;
     color: var(--nav-text-inactive);
     text-decoration: none;
+}
+nav a:last-of-type {
+    padding-right: 0;
 }
 
 nav a i {
@@ -210,6 +215,9 @@ input:active, input:focus, textarea:active, textarea:focus {
 .w5 {
     width: 5%;
 }
+.w8 {
+    width: 8%;
+}
 
 .mt-15 {
     margin-top: 1.5em;
@@ -221,17 +229,17 @@ input:active, input:focus, textarea:active, textarea:focus {
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: var(--main-background);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: var(--logo);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: var(--logo);
 }
 
 .btn-blue {
@@ -244,3 +252,32 @@ input:active, input:focus, textarea:active, textarea:focus {
     letter-spacing: 0.1em;
 }
 
+
+table {
+    table-layout: fixed;
+    border-collapse:separate;
+}
+thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: var(--container-background);
+}
+table input {
+    width: 100%;
+}
+table th {
+    text-align: left;
+    padding-bottom: 0.5em;
+}
+table tr {
+    margin-top: 0.5em;
+}
+
+
+i:hover {
+    color: var(--logo);
+}
+.fa-ban:hover {
+    color: red;
+}

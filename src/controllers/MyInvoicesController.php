@@ -29,9 +29,9 @@ class MyInvoicesController extends AppController
         } else {
             $userId = $_SESSION['userID'];
             $invoices = $this->invoiceRepository->getInvoicesForInvoicesListView($userId);
-            $invoiceStates = $this->invoiceRepository->getAllInvoiceStates();
+            //$invoiceStates = $this->invoiceRepository->getAllInvoiceStates();
 
-            return $this->render("my_invoices", ['invoices' => $invoices, 'invoiceStates' => $invoiceStates]);
+            return $this->render("my_invoices", ['invoices' => $invoices]);
         }
 
     }

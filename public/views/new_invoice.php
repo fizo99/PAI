@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Login</title>
+    <title>New Invoice</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
@@ -62,8 +62,8 @@
                         <div class="flex row hor-space-between w45">
                             <label id="buyer-details-label">Buyer Details</label>
                             <div class="flex row hor-center ver-center">
-                                <input class="checkbox-round" type="checkbox" id="is_company" name="is_company" checked>
-                                <label for="is_company">Company</label>
+                                <input type="checkbox" id="is_company" name="is_company" checked>
+                                <span>Company</span>
                             </div>
                         </div>
                     </div>

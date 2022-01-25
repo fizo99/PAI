@@ -55,11 +55,7 @@
 section label {
     margin-bottom: 0.3em;
 }
-table {
-    table-layout: fixed;
-    border-collapse:separate;
-    border-spacing: 0.3em 0.5em;
-}
+
 #invoice-form {
     display: flex;
     flex-direction: column;
@@ -69,24 +65,6 @@ table {
     flex-grow: 1;
     overflow: auto;
     border-bottom: 2px var(--input-border) solid;
-}
-
-thead th {
-    position: sticky;
-    top: 0; z-index: 1;
-    background-color: var(--container-background);
-    line-height: 1.5em;
-}
-table input {
-    width: 100%;
-}
-table th {
-    text-align: left;
-    padding-bottom: 0.5em;
-}
-
-table tr {
-    margin-top: 0.5em;
 }
 
 #additional-informations {
@@ -121,4 +99,12 @@ table tr {
 }
 #summary section:last-of-type > span > span{
     margin-left: 0.5em;
+}
+
+#is_company {
+    margin-right: 0.5em;
+}
+
+table {
+    border-spacing: 0.5em 0.5em;
 }

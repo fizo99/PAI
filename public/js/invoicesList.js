@@ -1,5 +1,5 @@
 const list = document.getElementById('items-table-body')
-const searchBar = document.querySelector('#search-bar input')
+const searchBar = document.querySelector('#input-search-invoices')
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const listClone = document.getElementById('items-table-body').cloneNode(true)
@@ -41,7 +41,6 @@ function updateInvoiceState(event) {
             newState: newState
         })
     }).then(response =>  {
-        deactivateSpinner()
         if(response.ok){
             return response.text()
         } else {
@@ -51,6 +50,8 @@ function updateInvoiceState(event) {
         event.target.parentElement.value = newState;
     }).catch(err => {
         alert(err.message)
+    }).finally(() => {
+        deactivateSpinner()
     })
 }
 
@@ -59,7 +60,7 @@ function deleteInvoice(event) {
     const rowChildren = row.children;
     const invoiceId = rowChildren[rowChildren.length - 1].value
 
-    // activateSpinner();
+    activateSpinner();
     fetch("/delete_invoice/" + invoiceId, {
         method: "DELETE",
     }).then(response =>  {
@@ -73,6 +74,8 @@ function deleteInvoice(event) {
         window.location.reload();
     }).catch(err => {
         alert(err.message)
+    }).finally(() => {
+        deactivateSpinner()
     })
 }
 
@@ -81,7 +84,7 @@ function downloadInvoice(event) {
     const rowChildren = row.children;
     const invoiceId = rowChildren[rowChildren.length - 1].value
 
-    // activateSpinner();
+    activateSpinner();
     fetch("/download_invoice/" + invoiceId, {
         method: "GET",
     }).then(response =>  {
@@ -95,6 +98,8 @@ function downloadInvoice(event) {
         downloadDoc(result)
     }).catch(err => {
         alert(err.message);
+    }).finally(() => {
+        deactivateSpinner()
     })
 }
 

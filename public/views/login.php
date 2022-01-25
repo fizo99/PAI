@@ -11,25 +11,29 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-        <link rel="stylesheet" href="public/css/common.css">
-        <link rel="stylesheet" href="public/css/login.css">
+        <link rel="stylesheet" href="public/css/commons.css">
+        <link rel="stylesheet" href="public/css/register.css">
     </head>
     <body>
-        <div id="login">
-            <span>TAXAMO</span>
-            <form class="login" method="POST">
-                <?php
-                if(isset($messages)){
-                    foreach($messages as $message) {
-                        echo $message;
+        <main>
+            <section id="logo">TAXAMO</section>
+            <form method="POST">
+                <div class="messages">
+                    <?php
+                    if(isset($messages)){
+                        foreach($messages as $message) {
+                            echo $message;
+                        }
                     }
-                }
-                ?>
-                <input type="text" name="email" placeholder="Email">
-                <input type="password" name="password" placeholder="Password">
-                <button class = "btn-solid-blue" type="submit">Login</button>
-                <a class = "btn-text" href="register"">Register</button>
+                    ?>
+                </div>
+                <section>
+                    <input type="text" name="email" placeholder="Email">
+                    <input type="password" name="password" placeholder="Password">
+                </section>
+                <button class = "btn-blue" type="submit">Login</button>
+                <a class href="register"">Register</a>
             </form>
-        </div>
+        </main>
     </body>
 </html>
