@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>New Invoice</title>
+    <title>Nowa Faktura</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
@@ -20,11 +20,11 @@
     <section id="nav-buttons-container">
         <a href="new_invoice" class="nav-active">
             <i class="fas fa-plus"></i>
-            <span>Create new</span>
+            <span>Nowa</span>
         </a>
         <a href="my_invoices">
             <i class="fas fa-list"></i>
-            <span>My invoices</span>
+            <span>Moje faktury</span>
         </a>
         <a href="logout">
             <i class="fas fa-sign-out-alt"></i>
@@ -36,10 +36,10 @@
         <section id="left-bar">
             <form id="invoice-form">
                 <section id="invoice-details-container">
-                    <label class="w100" id="invoice-details-label">Invoice Details</label>
+                    <label class="w100" id="invoice-details-label">Szczegóły Faktury</label>
                     <section class="flex row ver-space-between w100">
                         <section>
-                            <input type="text" name="invoice_nr" placeholder="Invoice number" required>
+                            <input type="text" name="invoice_nr" placeholder="Numer faktury" required>
                             <select name="invoice_type" required>
                                 <option value="" disabled selected hidden>Typ</option>
                                 <option value="VAT">VAT</option>
@@ -52,18 +52,18 @@
                             </select>
                         </section>
                         <section>
-                            <input type="text" name="place" placeholder="Place" required>
-                            <input type="date" name="date" placeholder="Date" required>
+                            <input type="text" name="place" placeholder="Miejsce" required>
+                            <input type="date" name="date" required>
                         </section>
                     </section>
                 </section>
                 <section class="mt-15" id="buyer-details-container">
                     <div class="w100">
                         <div class="flex row hor-space-between w45">
-                            <label id="buyer-details-label">Buyer Details</label>
+                            <label id="buyer-details-label">Kupujący</label>
                             <div class="flex row hor-center ver-center">
                                 <input type="checkbox" id="is_company" name="is_company" checked>
-                                <span>Company</span>
+                                <span>Firma</span>
                             </div>
                         </div>
                     </div>
@@ -73,32 +73,32 @@
                                    placeholder="NIP" required>
                             <i class="fa fa-search" onclick="findNIP()"></i>
                         </div>
-                        <input id='invoice-company-name' type="text" name="company_name" placeholder="Company Name"
+                        <input id='invoice-company-name' type="text" name="company_name" placeholder="Nazwa firmy"
                                required>
-                        <input type="text" name="phone_nr" placeholder="Phone Number">
+                        <input type="text" name="phone_nr" placeholder="Numer telefonu">
                     </section>
                     <section class="flex col w45">
-                        <input id='invoice-city' type="text" name="city" placeholder="City" required>
-                        <input id='invoice-zip' type="text" name="zip_code" placeholder="Zip Code" required>
+                        <input id='invoice-city' type="text" name="city" placeholder="Miejscowość" required>
+                        <input id='invoice-zip' type="text" name="zip_code" placeholder="Kod pocztowy" required>
                         <div class="flex row hor-center ver-center w100">
                             <input class="w80" id='invoice-street-name' type="text" name="street_name"
-                                   placeholder="Street" required>
+                                   placeholder="Ulica" required>
                             <input class="w20" id='invoice-street-nr' type="text" name="street_nr" placeholder="Nr"
                                    required>
                         </div>
                     </section>
                 </section>
                 <label id="items-label" class="mt-15">
-                    <span>Items</span>
+                    <span>Przedmioty</span>
                     <i id='item-add-button' class="fas fa-plus-circle"></i>
                 </label>
                 <section id="invoice-items-container">
                     <table class="w100" id="items">
                         <thead class="w100">
                         <tr>
-                            <th class="w30">Product Name</th>
-                            <th class="w10">QU</th>
-                            <th class="w10">Unit</th>
+                            <th class="w30">Nazwa</th>
+                            <th class="w10">Ilość</th>
+                            <th class="w10">Jednostka</th>
                             <th class="w20">Netto</th>
                             <th class="w5">%</th>
                             <th class="w20">Brutto</th>
@@ -140,8 +140,8 @@
                     </span>
                 </section>
             </section>
-            <textarea class="mt-15" id="additional-informations" placeholder="Additional informations..." type="text"></textarea>
-            <button id="save" class="btn-blue mt-15" onclick="processSave()">SAVE</button>
+            <textarea class="mt-15" id="additional-informations" placeholder="Dodatkowe informacje..."></textarea>
+            <button id="save" class="btn-blue mt-15" onclick="processSave()">ZAPISZ</button>
         </section>
     </div>
 </main>

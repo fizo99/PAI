@@ -48,10 +48,10 @@ function updateInvoiceState(event) {
         }
     }).then(result => {
         event.target.parentElement.value = newState;
+        spinnerSucces();
     }).catch(err => {
-        alert(err.message)
-    }).finally(() => {
-        deactivateSpinner()
+        console.log(err.message)
+        spinnerFailure();
     })
 }
 
@@ -64,18 +64,19 @@ function deleteInvoice(event) {
     fetch("/delete_invoice/" + invoiceId, {
         method: "DELETE",
     }).then(response =>  {
-        //deactivateSpinner()
         if(response.ok){
             return response.text()
         } else {
             throw new Error('Something went wrong' + response.text())
         }
     }).then(result => {
-        window.location.reload();
+        spinnerSucces()
+        setTimeout(() => {
+            window.location.reload();
+        },1000);
     }).catch(err => {
-        alert(err.message)
-    }).finally(() => {
-        deactivateSpinner()
+        spinnerFailure();
+        console.log(err.message);
     })
 }
 
@@ -88,18 +89,19 @@ function downloadInvoice(event) {
     fetch("/download_invoice/" + invoiceId, {
         method: "GET",
     }).then(response =>  {
-        //deactivateSpinner()
         if(response.ok){
             return response.blob()
         } else {
             throw new Error('Something went wrong' + response.text())
         }
     }).then(result => {
-        downloadDoc(result)
+        spinnerSucces()
+        setTimeout(() => {
+            downloadDoc(result)
+        },1000);
     }).catch(err => {
-        alert(err.message);
-    }).finally(() => {
-        deactivateSpinner()
+        spinnerFailure();
+        console.log(err.message);
     })
 }
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Login</title>
+    <title>Rejestracja</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
@@ -27,37 +27,37 @@
             </div>
             <section>
                 <div class="flex row hor-space-between">
-                    <label>Account Details</label>
+                    <label>Szczegóły konta</label>
                     <div class="flex row hor-center ver-center">
                         <span>Demo</span>
                         <input type="checkbox" id="is_demo" name="is_demo" checked>
                     </div>
                 </div>
                 <input type="text" name="email" placeholder="Email">
-                <input type="password" name="password" placeholder="Password">
-                <input type="password" name="password-repeat" placeholder="Repeat Password">
+                <input type="password" name="password" placeholder="Hasło">
+                <input type="password" name="password-repeat" placeholder="Powtórz hasło">
             </section>
             <section>
-                <label>Company Details</label>
+                <label>Szczegóły Firmy</label>
                 <input type="text" name="nip" placeholder="NIP">
-                <input type="text" name="company_name" placeholder="Company Name">
+                <input type="text" name="company_name" placeholder="Nazwa firmy">
             </section>
             <section>
-                <label>Contact</label>
+                <label>Kontakt</label>
                 <input type="text" name="contact-email" placeholder="Email">
-                <input type="text" name="phone_number" placeholder="Phone Number">
-                <input type="text" name="iban" placeholder="IBAN">
+                <input type="text" name="phone_number" placeholder="Numer telefonu">
+                <input type="text" name="iban" placeholder="Nr IBAN">
             </section>
             <section>
-                <label>Address</label>
-                <input type="text" name="city" placeholder="City">
-                <input type="text" name="zip" placeholder="Zip Code">
+                <label>Adres</label>
+                <input type="text" name="city" placeholder="Miejscowość">
+                <input type="text" name="zip" placeholder="Kod pocztowy">
                 <div class="flex row">
-                    <input class="w80" type="text" name="street_name" placeholder="Street Name">
+                    <input class="w80" type="text" name="street_name" placeholder="Nazwa ulicy">
                     <input class="w20"type="text" name="street_nr" placeholder="Nr">
                 </div>
             </section>
-            <button class="btn-blue" type="submit">Register</button>
+            <button class="btn-blue" type="submit">Zarejestruj</button>
         </form>
     </main>
 </body>

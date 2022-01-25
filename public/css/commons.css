@@ -19,6 +19,8 @@
     --input-text-placeholder: #96A0B5;
 
     --lightblue: #F7F9FB;
+    --fail: #EF595D;
+    --success: #009900;
 }
 
 * {
@@ -113,7 +115,9 @@ main {
 }
 
 #loading {
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     width: 50px;
     height: 50px;
     border: 3px solid rgba(255, 255, 255, .3);
@@ -124,6 +128,41 @@ main {
     position: absolute;
     top: 50%;
     left: 50%;
+}
+
+.success {
+    color: var(--success);
+}
+.failure{
+    color: var(--fail);
+}
+
+#async-result {
+    font-size: 2em;
+    animation-duration: 1s;
+    animation-name: big-small;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+#async-result.fade {
+    opacity: 0;
+}
+
+@keyframes big-small {
+    0% {
+        font-size: 0;
+    }
+    30% {
+        font-size: 2em;
+        transform: rotate(360deg);
+    }
+    100% {
+        font-size: 2em;
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes spin {

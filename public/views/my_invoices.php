@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My Invoices</title>
+    <title>Moje faktury</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
@@ -20,11 +20,11 @@
     <section id="nav-buttons-container">
         <a href="new_invoice">
             <i class="fas fa-plus"></i>
-            <span>Create new</span>
+            <span>Nowa</span>
         </a>
         <a href="my_invoices" class="nav-active">
             <i class="fas fa-list"></i>
-            <span>My invoices</span>
+            <span>Moje faktury</span>
         </a>
         <a href="logout">
             <i class="fas fa-sign-out-alt"></i>
@@ -33,16 +33,16 @@
 </nav>
 <main>
     <section>
-        <input id="input-search-invoices" type="search" placeholder="Search">
+        <input id="input-search-invoices" type="search" placeholder="Szukaj...">
         <section id="table-wrapper">
             <table id="items">
                 <thead>
                 <tr>
-                    <th class="w20">Buyer</th>
-                    <th class="w10">Number</th>
+                    <th class="w20">Kupujący</th>
+                    <th class="w10">Nr faktury</th>
                     <th class="w15">NIP</th>
                     <th class="w15">Brutto</th>
-                    <th class="w15">Date</th>
+                    <th class="w15">Data</th>
                     <th class="w10">Status</th>
                     <th class="w10">Akcja</th>
                 </tr>

@@ -54,16 +54,16 @@ function handleSave() {
         },
         body: JSON.stringify(formData)
     }).then(response => {
-        deactivateSpinner()
         if (response.ok) {
             return response.text()
         } else {
             throw new Error('Something went wrong' + response.text())
         }
     }).then(result => {
-        alert('Success!')
+        spinnerSucces();
     }).catch(err => {
-        alert(err.message)
+        spinnerFailure();
+        console.log(err.message)
     })
 }
 

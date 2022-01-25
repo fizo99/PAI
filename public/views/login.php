@@ -7,7 +7,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Login</title>
+        <title>Logowanie</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
@@ -29,10 +29,10 @@
                 </div>
                 <section>
                     <input type="text" name="email" placeholder="Email">
-                    <input type="password" name="password" placeholder="Password">
+                    <input type="password" name="password" placeholder="Hasło">
                 </section>
-                <button class = "btn-blue" type="submit">Login</button>
-                <a class href="register"">Register</a>
+                <button class = "btn-blue" type="submit">Zaloguj</button>
+                <a class href="register"">Rejestracja</a>
             </form>
         </main>
     </body>
