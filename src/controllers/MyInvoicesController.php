@@ -106,11 +106,16 @@ class MyInvoicesController extends AppController
             }else{
                 $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('public/word/template.docx');
             }
+            if($details['payment_method'] == 'cash'){
+                $paymentMethod = "Gotówka";
+            }else{
+                $paymentMethod = "Przelew";
+            }
 
             $templateProcessor->setValue('invoiceType', $details['invoice_type']);
             $templateProcessor->setValue('invoiceDate', $details['date']);
             $templateProcessor->setValue('invoiceNumber', $details['number']);
-            $templateProcessor->setValue('paymentMethod', $details['payment_method']);
+            $templateProcessor->setValue('paymentMethod', $paymentMethod);
             $templateProcessor->setValue('additionalInformations', $details['additional_info']);
 
 
