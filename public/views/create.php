@@ -13,24 +13,8 @@
     <script type="text/javascript" src="./public/js/common.js" defer></script>
     <script type="text/javascript" src="./public/js/script.js" defer></script>
 </head>
-
 <body>
-<nav>
-    <section id="logo">TAXAMO</section>
-    <section id="nav-buttons-container">
-        <a href="new_invoice" class="nav-active">
-            <i class="fas fa-plus"></i>
-            <span>Nowa</span>
-        </a>
-        <a href="my_invoices">
-            <i class="fas fa-list"></i>
-            <span>Moje faktury</span>
-        </a>
-        <a href="logout">
-            <i class="fas fa-sign-out-alt"></i>
-        </a>
-    </section>
-</nav>
+<?php include("nav.php"); ?>
 <main>
     <div id="form-container">
         <section id="left-bar">

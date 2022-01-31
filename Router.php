@@ -1,39 +1,50 @@
 <?php
 
-require_once 'src/controllers/DefaultController.php';
-require_once 'src/controllers/LoginController.php';
-require_once 'src/controllers/RegisterController.php';
-require_once 'src/controllers/NewInvoiceController.php';
-require_once 'src/controllers/MyInvoicesController.php';
-require_once 'src/controllers/LogoutController.php';
+require_once 'src/controllers/ViewController.php';
+require_once 'src/controllers/AuthController.php';
+require_once 'src/controllers/InvoiceController.php';
+require_once 'Handler.php';
 
-class Router {
+class Router
+{
 
     public static $routes;
 
-    public static function get($url, $controller) {
-        self::$routes[$url] = $controller;
+    public static function get($url, $controller, $method)
+    {
+        self::$routes["get"][$url] = new Handler($controller, $method);
     }
 
-    public static function post($url, $view) {
-        self::$routes[$url] = $view;
+    public static function post($url, $controller, $method)
+    {
+        self::$routes["post"][$url] = new Handler($controller, $method);
+    }
+    public static function delete($url, $controller, $method)
+    {
+        self::$routes["delete"][$url] = new Handler($controller, $method);
+    }
+    public static function put($url, $controller, $method)
+    {
+        self::$routes["put"][$url] = new Handler($controller, $method);
     }
 
     public static function run($url)
     {
         $urlParts = explode("/", $url);
-        $action = $urlParts[0];
+        $endpoint = $urlParts[0];
+        $httpMethod = strtolower($_SERVER['REQUEST_METHOD']);
 
-        if (!array_key_exists($action, self::$routes)) {
-            die("Wrong url!");
+        if (!array_key_exists($endpoint, self::$routes[$httpMethod])) {
+            die("Wrong request!");
         }
 
-        $controller = self::$routes[$action];
-        $object = new $controller;
-        $action = $action ?: 'index';
+        $handler = self::$routes[$httpMethod][$endpoint];
+
+        $controller = $handler->getController();
+        $method = $handler->getMethod();
 
         $id = $urlParts[1] ?? '';
-
-        $object->$action($id);
+        $controllerObject = new $controller;
+        $controllerObject->$method($id);
     }
 }

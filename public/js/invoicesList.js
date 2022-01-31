@@ -32,7 +32,7 @@ function updateInvoiceState(event) {
     const invoiceId = rowChildren[rowChildren.length - 1].value
 
     activateSpinner();
-    fetch("/update_state/" + invoiceId, {
+    fetch("/invoice/" + invoiceId, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ function deleteInvoice(event) {
     const invoiceId = rowChildren[rowChildren.length - 1].value
 
     activateSpinner();
-    fetch("/delete_invoice/" + invoiceId, {
+    fetch("/invoice/" + invoiceId, {
         method: "DELETE",
     }).then(response =>  {
         if(response.ok){
@@ -86,7 +86,7 @@ function downloadInvoice(event) {
     const invoiceId = rowChildren[rowChildren.length - 1].value
 
     activateSpinner();
-    fetch("/download_invoice/" + invoiceId, {
+    fetch("/invoice/" + invoiceId, {
         method: "GET",
     }).then(response =>  {
         if(response.ok){

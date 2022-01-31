@@ -47,7 +47,7 @@ function handleSave() {
     formData.additional_informations = additionalInformationsField.value;
 
     activateSpinner();
-    fetch("/new_invoice", {
+    fetch("/invoice", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'

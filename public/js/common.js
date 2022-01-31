@@ -1,3 +1,17 @@
+window.onload = function () {
+    const navButtons = document.querySelectorAll("nav a");
+    const view = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
+
+    let activeButtonId;
+    if (view === "create") {
+        activeButtonId = 0;
+    } else if (view === "list") {
+        activeButtonId = 1;
+    }
+
+    navButtons[activeButtonId].className = "nav-active"
+}
+
 function activateSpinner() {
     const spinner = document.createElement('div');
     const main = document.querySelector('main')
@@ -5,7 +19,7 @@ function activateSpinner() {
     main.insertBefore(spinner, main.firstChild)
 }
 
-function prepareSpinnerContent(){
+function prepareSpinnerContent() {
     const content = document.createElement("i")
     content.id = "async-result"
     return content;
@@ -39,7 +53,7 @@ function deactivateSpinnerWithContent(spinnerContent) {
         spinnerContent.className += " fade";
         await delay(1000);
         successBox.remove();
-    },1000);
+    }, 1000);
 }
 
 
