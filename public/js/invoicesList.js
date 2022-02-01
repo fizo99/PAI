@@ -104,8 +104,8 @@ function downloadInvoice(event) {
 }
 
 function downloadDoc(doc) {
-    var url = URL.createObjectURL(doc);
-    var tempLink = document.createElement('a');
+    const url = URL.createObjectURL(doc);
+    const tempLink = document.createElement('a');
     tempLink.href = url;
     tempLink.download = "invoice.docx";
     document.body.appendChild(tempLink);

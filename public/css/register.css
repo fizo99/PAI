@@ -48,3 +48,25 @@ main form {
     background-color: var(--container-background);
     padding: 1em;
 }
+
+@media only screen
+and (device-width : 414px)
+and (device-height : 896px)
+and (-webkit-device-pixel-ratio : 2) {
+    #logo {
+        font-size: 3.5em;
+        margin-bottom: 0.3em;
+    }
+    form {
+        width: 80vw;
+    }
+    main button {
+        margin-top: 1em;
+    }
+    form input {
+        margin-top: 0.7em;
+    }
+    form input[type="checkbox"] {
+        margin-top: 0;
+    }
+}

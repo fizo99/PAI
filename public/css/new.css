@@ -70,6 +70,7 @@ section label {
 #additional-informations {
     min-height: 15vh;
     resize: none;
+    margin-top: auto;
 }
 
 #right-bar {
@@ -77,9 +78,6 @@ section label {
 }
 #right-bar section{
     margin-bottom: auto;
-}
-#right-bar textarea{
-    margin-top: auto;
 }
 #summary {
     display: flex;
@@ -107,4 +105,56 @@ section label {
 
 table {
     border-spacing: 0.5em 0.5em;
+}
+
+@media only screen
+and (device-width : 414px)
+and (device-height : 896px)
+and (-webkit-device-pixel-ratio : 2) {
+    #form-container {
+        display: flex;
+        flex-direction: column;
+    }
+    #form-container > * {
+        width: 100%;
+    }
+    #right-bar {
+        margin-left: 0;
+        margin-top: 0.5em;
+    }
+    #left-bar {
+        min-height: 100%;
+    }
+    #additional-informations {
+        margin-top: 1em;
+    }
+    tbody tr td:nth-child(1):before {
+        content: "Nazwa";
+    }
+    tbody tr td:nth-child(2):before {
+        content: "Ilość";
+    }
+    tbody tr td:nth-child(3):before {
+        content: "Jm.";
+    }
+    tbody tr td:nth-child(4):before {
+        content: "Netto";
+    }
+    tbody tr td:nth-child(5):before {
+        content: "%";
+    }
+    tbody tr td:nth-child(6):before {
+        content: "Brutto";
+    }
+
+    #invoice-street-name {
+        width: 70%;
+    }
+    #invoice-street-nr {
+        width: 30%;
+    }
+    #invoice-details-container select,
+    #invoice-details-container input {
+        width: 100%;
+    }
 }

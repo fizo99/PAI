@@ -320,3 +320,36 @@ i:hover {
 .fa-ban:hover {
     color: red;
 }
+
+
+@media only screen
+and (device-width : 414px)
+and (device-height : 896px)
+and (-webkit-device-pixel-ratio : 2) {
+    table thead {
+        display: none;
+    }
+    table tr {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 2px var(--input-border) solid;
+    }
+    table tr:last-child {
+        border-bottom: none;
+    }
+    tbody tr td {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    tbody tr td:last-child {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.7em;
+    }
+    tbody tr input {
+        max-width: 65%;
+        text-align: right;
+    }
+}

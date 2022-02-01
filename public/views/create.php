@@ -82,7 +82,7 @@
                         <tr>
                             <th class="w30">Nazwa</th>
                             <th class="w10">Ilość</th>
-                            <th class="w10">Jednostka</th>
+                            <th class="w10">Jm.</th>
                             <th class="w20">Netto</th>
                             <th class="w5">%</th>
                             <th class="w20">Brutto</th>
@@ -94,12 +94,12 @@
                             <td><input type="text" required></td>
                             <td><input pattern="\d*" type="number" value="1" required></td>
                             <td><input type="text" value="szt" required></td>
-                            <td><input pattern="^\d+(\.\d{1,2})?$" min="0.01" step="0.01" type="number"
+                            <td><input pattern="^\d+(\.\d{1,2})?$" type="number"
                                        onfocusout="handleCalculateBrutto(event);handleCalculateTotal()"
                                        placeholder="0.00" required></td>
-                            <td><input pattern="^\d+(\.\d{1,2})?$" min="0.01" step="0.01" type="number" value="23"
+                            <td><input pattern="^\d+(\.\d{1,2})?$" type="number" value="23"
                                        required></td>
-                            <td><input pattern="^\d+(\.\d{1,2})?$" min="0.01" step="0.01" type="number"
+                            <td><input pattern="^\d+(\.\d{1,2})?$" type="number"
                                        onfocusout="handleCalculateNetto(event);handleCalculateTotal()"
                                        placeholder="0.00" required></td>
                             <td><i class="fas fa-ban" onclick="handleDeleteRow(event)"></i></td>
@@ -156,15 +156,16 @@
 <template id="table-row">
     <tr>
         <td><input type="text" required></td>
-        <td><input pattern="^[1-9]\d*$" type="number" value="1" required></td>
+        <td><input pattern="\d*" type="number" value="1" required></td>
         <td><input type="text" value="szt" required></td>
-        <td><input pattern="^[1-9][0-9]{0,2}(?:\.?[0-9]{3}){0,3}(,[0-9]{2})?$" type="number"
-                   onfocusout="handleCalculateBrutto(event);handleCalculateTotal(event)" placeholder="0.00" required>
-        </td>
-        <td><input pattern="^[1-9][0-9]{0,2}(?:\.?[0-9]{3}){0,3}(,[0-9]{2})?$" type="number" value="23" required></td>
-        <td><input pattern="^[1-9][0-9]{0,2}(?:\.?[0-9]{3}){0,3}(,[0-9]{2})?$" type="number"
-                   onfocusout="handleCalculateNetto(event);handleCalculateTotal(event)" placeholder="0.00" required>
-        </td>
+        <td><input pattern="^\d+(\.\d{1,2})?$" type="number"
+                   onfocusout="handleCalculateBrutto(event);handleCalculateTotal()"
+                   placeholder="0.00" required></td>
+        <td><input pattern="^\d+(\.\d{1,2})?$" type="number" value="23"
+                   required></td>
+        <td><input pattern="^\d+(\.\d{1,2})?$" type="number"
+                   onfocusout="handleCalculateNetto(event);handleCalculateTotal()"
+                   placeholder="0.00" required></td>
         <td><i class="fas fa-ban" onclick="handleDeleteRow(event)"></i></td>
     </tr>
 </template>
