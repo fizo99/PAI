@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Logowanie</title>
+    <title>Wylogowano</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
@@ -19,24 +19,8 @@
 </head>
 <body>
 <main>
-    <section id="logo">TAXAMO</section>
-    <form method="POST">
-        <div class="messages">
-            <?php
-            if (isset($messages)) {
-                foreach ($messages as $message) {
-                    echo $message;
-                }
-            }
-            ?>
-        </div>
-        <section>
-            <input type="email" name="email" placeholder="Email">
-            <input type="password" name="password" placeholder="Hasło" autocomplete="on">
-        </section>
-        <button class="btn-blue" type="submit">Zaloguj</button>
-        <a href="register"">Rejestracja</a>
-    </form>
+    <h2>Wylogowano</h2>
+    <a href="login"">Zaloguj</a>
 </main>
 </body>
 </html>

@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link rel="stylesheet" href="public/css/commons.css">
-    <link rel="stylesheet" href="public/css/new.css">
+    <link rel="stylesheet" href="public/css/create.css">
     <script src="https://kit.fontawesome.com/6afad8acbe.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="./public/js/common.js" defer></script>
-    <script type="text/javascript" src="./public/js/script.js" defer></script>
+    <script type="text/javascript" src="./public/js/create.js" defer></script>
 </head>
 <body>
 <?php include("nav.php"); ?>
@@ -92,15 +92,16 @@
                         <tbody class="w100" id="table-body">
                         <tr>
                             <td><input type="text" required></td>
-                            <td><input pattern="\d*" type="number" value="1" required></td>
+                            <td><input pattern="\d*" type="number" value="1" onfocusout="handleCalculateTotal()"
+                                       required></td>
                             <td><input type="text" value="szt" required></td>
                             <td><input pattern="^\d+(\.\d{1,2})?$" type="number"
-                                       onfocusout="handleCalculateBrutto(event);handleCalculateTotal()"
+                                       onfocusout="handleNettoChange(event)"
                                        placeholder="0.00" required></td>
                             <td><input pattern="^\d+(\.\d{1,2})?$" type="number" value="23"
-                                       required></td>
+                                       onfocusout="handlePercentChange(event)" required></td>
                             <td><input pattern="^\d+(\.\d{1,2})?$" type="number"
-                                       onfocusout="handleCalculateNetto(event);handleCalculateTotal()"
+                                       onfocusout="handleBruttoChange(event)"
                                        placeholder="0.00" required></td>
                             <td><i class="fas fa-ban" onclick="handleDeleteRow(event)"></i></td>
                         </tr>
@@ -156,15 +157,15 @@
 <template id="table-row">
     <tr>
         <td><input type="text" required></td>
-        <td><input pattern="\d*" type="number" value="1" required></td>
+        <td><input pattern="\d*" type="number" value="1" onfocusout="handleCalculateTotal()" required></td>
         <td><input type="text" value="szt" required></td>
         <td><input pattern="^\d+(\.\d{1,2})?$" type="number"
-                   onfocusout="handleCalculateBrutto(event);handleCalculateTotal()"
+                   onfocusout="handleNettoChange(event)"
                    placeholder="0.00" required></td>
         <td><input pattern="^\d+(\.\d{1,2})?$" type="number" value="23"
-                   required></td>
+                   onfocusout="handlePercentChange(event)" required></td>
         <td><input pattern="^\d+(\.\d{1,2})?$" type="number"
-                   onfocusout="handleCalculateNetto(event);handleCalculateTotal()"
+                   onfocusout="handleBruttoChange(event)"
                    placeholder="0.00" required></td>
         <td><i class="fas fa-ban" onclick="handleDeleteRow(event)"></i></td>
     </tr>

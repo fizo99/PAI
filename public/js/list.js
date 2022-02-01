@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function handleAction(event) {
-    if(event.target.value === "delete"){
+    if (event.target.value === "delete") {
         deleteInvoice(event);
-    }else if(event.target.value === "download_doc"){
+    } else if (event.target.value === "download_doc") {
         downloadInvoice(event);
     }
 }
@@ -40,8 +40,8 @@ function updateInvoiceState(event) {
         body: JSON.stringify({
             newState: newState
         })
-    }).then(response =>  {
-        if(response.ok){
+    }).then(response => {
+        if (response.ok) {
             return response.text()
         } else {
             throw new Error('Something went wrong' + response.text())
@@ -63,8 +63,8 @@ function deleteInvoice(event) {
     activateSpinner();
     fetch("/invoice/" + invoiceId, {
         method: "DELETE",
-    }).then(response =>  {
-        if(response.ok){
+    }).then(response => {
+        if (response.ok) {
             return response.text()
         } else {
             throw new Error('Something went wrong' + response.text())
@@ -73,7 +73,7 @@ function deleteInvoice(event) {
         spinnerSucces()
         setTimeout(() => {
             window.location.reload();
-        },1000);
+        }, 1000);
     }).catch(err => {
         spinnerFailure();
         console.log(err.message);
@@ -88,8 +88,8 @@ function downloadInvoice(event) {
     activateSpinner();
     fetch("/invoice/" + invoiceId, {
         method: "GET",
-    }).then(response =>  {
-        if(response.ok){
+    }).then(response => {
+        if (response.ok) {
             return response.blob()
         } else {
             throw new Error('Something went wrong' + response.text())

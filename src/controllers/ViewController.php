@@ -10,7 +10,6 @@ class ViewController extends AppController
 
     public function __construct()
     {
-        parent::__construct();
         $this->invoiceRepository = new InvoiceRepository();
     }
 

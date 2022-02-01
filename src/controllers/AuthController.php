@@ -1,22 +1,20 @@
 <?php
 
 require_once 'AppController.php';
-require_once __DIR__ .'/../models/User.php';
-require_once __DIR__ .'/../repository/UserRepository.php';
-require_once __DIR__ .'/../repository/CompanyRepository.php';
-require_once __DIR__ .'/../repository/AddressRepository.php';
+require_once __DIR__ . '/../models/User.php';
+require_once __DIR__ . '/../repository/UserRepository.php';
+require_once __DIR__ . '/../repository/CompanyRepository.php';
+require_once __DIR__ . '/../repository/AddressRepository.php';
 require_once 'PostArrayObjectFactory.php';
 
-class AuthController extends AppController {
-
+class AuthController extends AppController
+{
     private $userRepository;
     private $companyRepository;
     private $addressRepository;
 
-
     public function __construct()
     {
-        parent::__construct();
         $this->userRepository = new UserRepository();
         $this->companyRepository = new CompanyRepository();
         $this->addressRepository = new AddressRepository();
@@ -48,7 +46,7 @@ class AuthController extends AppController {
         }
 
         $role = $user->getIsDemo() == "true" ? "demo" : "standard";
-        setcookie('role', $role, time()+(86400 * 30), "/");
+        setcookie('role', $role, time() + (86400 * 30), "/");
 
         $_SESSION['userID'] = $user->getUserId();
 
@@ -81,14 +79,14 @@ class AuthController extends AppController {
             $conn->commit();
         } catch (UserExistsException $ex) {
             return $this->render('register', ['messages' => [$ex->getMessage()]]);
-        }catch (AddressExistsException $ex) {
+        } catch (AddressExistsException $ex) {
             return $this->render('register', ['messages' => [$ex->getMessage()]]);
         } catch (CompanyExistsException $ex) {
             return $this->render('register', ['messages' => [$ex->getMessage()]]);
         }
 
         $role = $user->getIsDemo() == "true" ? "demo" : "standard";
-        setcookie('role', $role, time()+(86400 * 30), "/");
+        setcookie('role', $role, time() + (86400 * 30), "/");
 
         session_start();
         $_SESSION['userID'] = $userId;
@@ -103,9 +101,8 @@ class AuthController extends AppController {
         session_unset();
         session_destroy();
 
-        setcookie("role", "", time()-3600);
+        setcookie("role", "", time() - 3600);
 
-        $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/login");
+        $this->render('logout');
     }
 }

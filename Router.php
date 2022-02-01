@@ -19,10 +19,12 @@ class Router
     {
         self::$routes["post"][$url] = new Handler($controller, $method);
     }
+
     public static function delete($url, $controller, $method)
     {
         self::$routes["delete"][$url] = new Handler($controller, $method);
     }
+
     public static function put($url, $controller, $method)
     {
         self::$routes["put"][$url] = new Handler($controller, $method);

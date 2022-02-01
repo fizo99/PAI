@@ -1,6 +1,22 @@
 <?php
 
-class Product {
+class Product
+{
+    private $productId;
+    private $name;
+    private $unit;
+    private $nettoPrice;
+    private $taxPercent;
+
+    public function __construct($productId, $name, $unit, $nettoPrice, $taxPercent)
+    {
+        $this->productId = $productId;
+        $this->name = $name;
+        $this->unit = $unit;
+        $this->nettoPrice = $nettoPrice;
+        $this->taxPercent = $taxPercent;
+    }
+
     /**
      * @return mixed
      */
@@ -39,21 +55,6 @@ class Product {
     public function getTaxPercent()
     {
         return $this->taxPercent;
-    }
-    private $productId;
-    private $name;
-    private $unit;
-    private $nettoPrice;
-    private $taxPercent;
-
-
-    public function __construct($productId, $name, $unit, $nettoPrice, $taxPercent)
-    {
-        $this->productId = $productId;
-        $this->name = $name;
-        $this->unit = $unit;
-        $this->nettoPrice = $nettoPrice;
-        $this->taxPercent = $taxPercent;
     }
 
 

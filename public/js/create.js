@@ -68,7 +68,6 @@ function handleSave() {
 }
 
 
-
 function collectProducts() {
     const products = []
     const tableRows = Array.from(tableBody.children);
@@ -103,17 +102,17 @@ function findNIP() {
                 return response.json();
             }
         }).then(result => {
-            const subject = result.result.subject;
-            const address = subject.residenceAddress !== null
-                ? subject.residenceAddress.split(",")
-                : subject.workingAddress.split(",")
-            const streetPart = address[0].split(" ")
-            const cityPart = address[1].split(" ")
-            document.getElementById('invoice-company-name').value = subject.name;
-            document.getElementById('invoice-street-name').value = streetPart.slice(0, streetPart.length - 1).join(" ");
-            document.getElementById('invoice-street-nr').value = streetPart[streetPart.length - 1];
-            document.getElementById('invoice-zip').value = cityPart[1];
-            document.getElementById('invoice-city').value = cityPart.slice(2).join(" ");
+        const subject = result.result.subject;
+        const address = subject.residenceAddress !== null
+            ? subject.residenceAddress.split(",")
+            : subject.workingAddress.split(",")
+        const streetPart = address[0].split(" ")
+        const cityPart = address[1].split(" ")
+        document.getElementById('invoice-company-name').value = subject.name;
+        document.getElementById('invoice-street-name').value = streetPart.slice(0, streetPart.length - 1).join(" ");
+        document.getElementById('invoice-street-nr').value = streetPart[streetPart.length - 1];
+        document.getElementById('invoice-zip').value = cityPart[1];
+        document.getElementById('invoice-city').value = cityPart.slice(2).join(" ");
     }).catch(err => {
         alert(err.message);
     }).finally(() => {
@@ -121,32 +120,64 @@ function findNIP() {
     })
 }
 
-function handleCalculateBrutto(event) {
-    const netto = event.target.value;
-    const vatPercent = parseInt(event.target.parentElement.parentElement.children[4].children[0].value);
+function handlePercentChange(event) {
+    const vatPercentField = event.target;
+    const nettoField = event.target.parentElement.parentElement.children[3].children[0];
     const bruttoField = event.target.parentElement.parentElement.children[5].children[0];
 
-    if (netto === "") {
+    const vatPercent = parseFloat(vatPercentField.value);
+    const netto = parseFloat(nettoField.value);
+
+    if (isNaN(netto) || isNaN(vatPercent)) {
+        console.log("Wrong netto or % value");
         bruttoField.value = ""
-    } else {
-        const nettoNum = parseFloat(netto)
-        const value = nettoNum + nettoNum * (parseInt(vatPercent) / 100.0)
-        bruttoField.value = round(value);
-    }
-}
-
-function handleCalculateNetto(event) {
-    const brutto = event.target.value;
-    const vatPercent = event.target.parentElement.parentElement.children[4].children[0].value;
-    const nettoField = event.target.parentElement.parentElement.children[3].children[0];
-
-    if (brutto === "") {
         nettoField.value = "";
     } else {
-        const bruttoNum = parseFloat(brutto)
-        const value = parseFloat(bruttoNum) / ((100 + parseInt(vatPercent)) / 100.0);
+        const value = netto + netto * (vatPercent / 100.0);
+        bruttoField.value = round(value);
+    }
+
+    handleCalculateTotal();
+}
+
+function handleNettoChange(event) {
+    const nettoField = event.target;
+    const vatPercentField = event.target.parentElement.parentElement.children[4].children[0];
+    const bruttoField = event.target.parentElement.parentElement.children[5].children[0];
+
+    const vatPercent = parseFloat(vatPercentField.value);
+    const netto = parseFloat(nettoField.value);
+
+    if (isNaN(netto) || isNaN(vatPercent)) {
+        console.log("Wrong netto or % value");
+        bruttoField.value = ""
+        nettoField.value = "";
+    } else {
+        const value = netto + netto * (vatPercent / 100.0);
+        bruttoField.value = round(value);
+    }
+
+    handleCalculateTotal();
+}
+
+function handleBruttoChange(event) {
+    const bruttoField = event.target;
+    const vatPercentField = event.target.parentElement.parentElement.children[4].children[0];
+    const nettoField = event.target.parentElement.parentElement.children[3].children[0];
+
+    const vatPercent = parseFloat(vatPercentField.value);
+    const brutto = parseFloat(bruttoField.value);
+
+    if (isNaN(brutto) || isNaN(vatPercent)) {
+        console.log("Wrong brutto or % value");
+        bruttoField.value = ""
+        nettoField.value = "";
+    } else {
+        const value = brutto / ((100.0 + vatPercent) / 100.0);
         nettoField.value = round(value)
     }
+
+    handleCalculateTotal();
 }
 
 function processSave() {
@@ -188,18 +219,18 @@ function validateRecursive(node) {
 function handleCalculateTotal() {
     const rows = tableBody.children
     const totalBrutto = Array.from(rows)
-        .map(row => [row.children[1].children[0].value,row.children[5].children[0].value])
+        .map(row => [row.children[1].children[0].value, row.children[5].children[0].value])
         .filter(element => !isNaN(parseFloat(element[0])) && !isNaN(parseFloat(element[1])))
-        .map(value => [parseFloat(value[0]),parseFloat(value[1])])
-        .reduce(function(previousValue, currentValue, index, array) {
+        .map(value => [parseFloat(value[0]), parseFloat(value[1])])
+        .reduce(function (previousValue, currentValue, index, array) {
             return previousValue + currentValue[0] * currentValue[1];
         }, 0);
 
     const totalNetto = Array.from(rows)
-        .map(row => [row.children[1].children[0].value,row.children[3].children[0].value])
+        .map(row => [row.children[1].children[0].value, row.children[3].children[0].value])
         .filter(element => !isNaN(parseFloat(element[0])) && !isNaN(parseFloat(element[1])))
-        .map(value => [parseFloat(value[0]),parseFloat(value[1])])
-        .reduce(function(previousValue, currentValue, index, array) {
+        .map(value => [parseFloat(value[0]), parseFloat(value[1])])
+        .reduce(function (previousValue, currentValue, index, array) {
             return previousValue + currentValue[0] * currentValue[1];
         }, 0);
 

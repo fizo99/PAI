@@ -9,6 +9,7 @@ class PostArrayObjectFactory
         $isDemo = $_POST['is_demo'] == null ? "false" : "true";
         return new User($email, md5($password), $isDemo);
     }
+
     static function createCompany(): Company
     {
         $nip = $_POST['nip'];
@@ -25,6 +26,7 @@ class PostArrayObjectFactory
             $iban
         );
     }
+
     static function createAddress(): Address
     {
         $city = $_POST['city'];

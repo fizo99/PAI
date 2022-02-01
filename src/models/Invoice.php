@@ -1,6 +1,42 @@
 <?php
 
-class Invoice {
+class Invoice
+{
+    private $buyerId;
+    private $sellerId;
+    private $place;
+    private $date;
+    private $number;
+    private $paymentMethod;
+    private $additionalInformations;
+    private $userId;
+    private $invoiceType;
+    private $invoiceState;
+
+    /**
+     * @param $buyerId
+     * @param $sellerId
+     * @param $place
+     * @param $date
+     * @param $number
+     * @param $paymentMethod
+     * @param $additionalInformations
+     * @param $userId
+     */
+    public function __construct($buyerId, $sellerId, $place, $date, $number, $paymentMethod, $additionalInformations, $userId, $invoiceType, $invoiceState)
+    {
+        $this->buyerId = $buyerId;
+        $this->sellerId = $sellerId;
+        $this->place = $place;
+        $this->date = $date;
+        $this->number = $number;
+        $this->paymentMethod = $paymentMethod;
+        $this->additionalInformations = $additionalInformations;
+        $this->userId = $userId;
+        $this->invoiceType = $invoiceType;
+        $this->invoiceState = $invoiceState;
+    }
+
     /**
      * @return mixed
      */
@@ -64,16 +100,6 @@ class Invoice {
     {
         return $this->userId;
     }
-    private $buyerId;
-    private $sellerId;
-    private $place;
-    private $date;
-    private $number;
-    private $paymentMethod;
-    private $additionalInformations;
-    private $userId;
-    private $invoiceType;
-    private $invoiceState;
 
     /**
      * @return mixed
@@ -89,30 +115,6 @@ class Invoice {
     public function getInvoiceType()
     {
         return $this->invoiceType;
-    }
-
-    /**
-     * @param $buyerId
-     * @param $sellerId
-     * @param $place
-     * @param $date
-     * @param $number
-     * @param $paymentMethod
-     * @param $additionalInformations
-     * @param $userId
-     */
-    public function __construct($buyerId, $sellerId, $place, $date, $number, $paymentMethod, $additionalInformations, $userId, $invoiceType, $invoiceState)
-    {
-        $this->buyerId = $buyerId;
-        $this->sellerId = $sellerId;
-        $this->place = $place;
-        $this->date = $date;
-        $this->number = $number;
-        $this->paymentMethod = $paymentMethod;
-        $this->additionalInformations = $additionalInformations;
-        $this->userId = $userId;
-        $this->invoiceType = $invoiceType;
-        $this->invoiceState = $invoiceState;
     }
 
 }

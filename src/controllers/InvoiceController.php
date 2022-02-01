@@ -21,7 +21,6 @@ class InvoiceController extends AppController
 
     public function __construct()
     {
-        parent::__construct();
         $this->userRepository = new UserRepository();
         $this->invoiceRepository = new InvoiceRepository();
         $this->companyRepository = new CompanyRepository();
@@ -42,10 +41,10 @@ class InvoiceController extends AppController
 
             $conn = Repository::connect();
             $conn->beginTransaction();
-            //get seller id
+
             $sellerId = $this->userRepository->getUserCompanyId($userId, $conn);
             $buyerId = $decoded['nip'];
-            //get buyer id or create new one
+
             if ($this->companyRepository->getCompany($buyerId) == null) {
                 $addressId = $this->addressRepository->addAddress(new Address(
                     $decoded['city'],

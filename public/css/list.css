@@ -1,4 +1,4 @@
-main section{
+main section {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -7,11 +7,13 @@ main section{
     padding: 1.5em;
     overflow-y: auto;
 }
+
 #table-wrapper {
     padding: 0;
     border-radius: 0;
     border-bottom: 2px var(--input-border) solid;
 }
+
 #input-search-invoices {
     max-width: 30%;
     margin-bottom: 1.5em;
@@ -26,27 +28,33 @@ table {
 }
 
 @media only screen
-and (device-width : 414px)
-and (device-height : 896px)
-and (-webkit-device-pixel-ratio : 2) {
+and (device-width: 414px)
+and (device-height: 896px)
+and (-webkit-device-pixel-ratio: 2) {
     tbody tr td:nth-child(1):before {
         content: "Nazwa Firmy";
     }
+
     tbody tr td:nth-child(2):before {
         content: "Nr Faktury";
     }
+
     tbody tr td:nth-child(3):before {
         content: "NIP";
     }
+
     tbody tr td:nth-child(4):before {
         content: "Brutto";
     }
+
     tbody tr td:nth-child(5):before {
         content: "Data";
     }
+
     tbody tr td:nth-child(6):before {
         content: "Status";
     }
+
     tbody tr td:nth-child(7):before {
         content: "Akcja";
     }
@@ -54,9 +62,11 @@ and (-webkit-device-pixel-ratio : 2) {
     tbody td {
         margin: 0.5em;
     }
+
     tbody select {
         width: 60%;
     }
+
     #input-search-invoices {
         max-width: 100%;
         margin-bottom: 0.7em;

@@ -7,7 +7,7 @@ require_once __DIR__ . '/../models/Invoice.php';
 
 class InvoiceRepository
 {
-    public function getInvoiceDetails(string $invoiceId,  PDO $existingConn = null)
+    public function getInvoiceDetails(string $invoiceId, PDO $existingConn = null)
     {
         $conn = $existingConn == null ? Repository::connect() : $existingConn;
         $stmt = $conn->prepare('
@@ -53,7 +53,7 @@ class InvoiceRepository
         return $invoiceDetails;
     }
 
-    public function getInvoiceProducts(string $invoiceId,  PDO $existingConn = null)
+    public function getInvoiceProducts(string $invoiceId, PDO $existingConn = null)
     {
         $conn = $existingConn == null ? Repository::connect() : $existingConn;
         $stmt = $conn->prepare('
@@ -77,7 +77,7 @@ class InvoiceRepository
         return $invoiceProducts;
     }
 
-    public function getInvoicesForInvoicesListView(string $userId,  PDO $existingConn = null)
+    public function getInvoicesForInvoicesListView(string $userId, PDO $existingConn = null)
     {
         $conn = $existingConn == null ? Repository::connect() : $existingConn;
         $stmt = $conn->prepare('
@@ -104,7 +104,7 @@ class InvoiceRepository
         return $result['total_brutto_value'];
     }
 
-    public function getAllInvoicesForUser(string $userId,  PDO $existingConn = null)
+    public function getAllInvoicesForUser(string $userId, PDO $existingConn = null)
     {
         $conn = $existingConn == null ? Repository::connect() : $existingConn;
         $stmt = $conn->prepare('
@@ -130,8 +130,8 @@ class InvoiceRepository
         }
         return $invoiceList;
     }
-    
-    public function addInvoice(Invoice $invoice,  PDO $existingConn = null): string
+
+    public function addInvoice(Invoice $invoice, PDO $existingConn = null): string
     {
         $conn = $existingConn == null ? Repository::connect() : $existingConn;
         $stmt = $conn->prepare('
@@ -158,7 +158,7 @@ class InvoiceRepository
         return $conn->lastInsertId();
     }
 
-    public function deleteInvoice(string $invoiceId,  PDO $existingConn = null)
+    public function deleteInvoice(string $invoiceId, PDO $existingConn = null)
     {
         $conn = $existingConn == null ? Repository::connect() : $existingConn;
         $stmt = $conn->prepare('
@@ -169,7 +169,7 @@ class InvoiceRepository
         $stmt->execute();
     }
 
-    public function getInvoiceType(string $invoice_type,PDO $existingConn = null)
+    public function getInvoiceType(string $invoice_type, PDO $existingConn = null)
     {
         $conn = $existingConn == null ? Repository::connect() : $existingConn;
         $stmt = $conn->prepare('
@@ -203,7 +203,7 @@ class InvoiceRepository
             $newState,
             $invoiceId
         ]);
-        if($result) return true;
+        if ($result) return true;
         else return false;
     }
 
