@@ -3,11 +3,13 @@
     flex-direction: row;
     height: 100%;
 }
+
 #left-bar {
     width: 75vw;
     height: 100%;
     background-color: var(--container-background);
 }
+
 #right-bar {
     width: 25vw;
     height: 100%;
@@ -27,17 +29,21 @@
     display: flex;
     flex-direction: column;
 }
+
 #invoice-details-container section {
     flex-direction: row;
 }
+
 #invoice-form section:first-child {
     margin-top: 0;
 }
+
 #invoice-details-container section:last-child {
     margin-left: auto;
 }
-#invoice-details-container input,select{
-    margin-right:0.5em;
+
+#invoice-details-container input, select {
+    margin-right: 0.5em;
     margin-top: 0.3em;
 }
 
@@ -49,9 +55,10 @@
 }
 
 #buyer-details-container input[type='text'],
-#buyer-details-container input[type='number']{
+#buyer-details-container input[type='number'] {
     margin-top: 0.5em;
 }
+
 section label {
     margin-bottom: 0.3em;
 }
@@ -61,6 +68,7 @@ section label {
     flex-direction: column;
     height: 100%;
 }
+
 #invoice-items-container {
     flex-grow: 1;
     overflow: auto;
@@ -76,26 +84,32 @@ section label {
 #right-bar {
     justify-content: space-between;
 }
-#right-bar section{
+
+#right-bar section {
     margin-bottom: auto;
 }
+
 #summary {
     display: flex;
     flex-direction: row;
 }
+
 #summary > section {
     display: flex;
     flex-direction: column;
 }
+
 #summary section:first-of-type {
     margin-right: auto;
 }
+
 #summary section:last-of-type > span {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-#summary section:last-of-type > span > span{
+
+#summary section:last-of-type > span > span {
     margin-left: 0.5em;
 }
 
@@ -108,41 +122,51 @@ table {
 }
 
 @media only screen
-and (device-width : 414px)
-and (device-height : 896px)
-and (-webkit-device-pixel-ratio : 2) {
+and (device-width: 414px)
+and (device-height: 896px)
+and (-webkit-device-pixel-ratio: 2) {
     #form-container {
         display: flex;
         flex-direction: column;
     }
+
     #form-container > * {
         width: 100%;
     }
+
     #right-bar {
         margin-left: 0;
         margin-top: 0.5em;
     }
+
     #left-bar {
         min-height: 100%;
     }
+
     #additional-informations {
         margin-top: 1em;
     }
+
     tbody tr td:nth-child(1):before {
         content: "Nazwa";
     }
+
     tbody tr td:nth-child(2):before {
         content: "Ilość";
     }
+
     tbody tr td:nth-child(3):before {
         content: "Jm.";
     }
+
     tbody tr td:nth-child(4):before {
         content: "Netto";
     }
+
     tbody tr td:nth-child(5):before {
         content: "%";
     }
+
     tbody tr td:nth-child(6):before {
         content: "Brutto";
     }
@@ -150,9 +174,11 @@ and (-webkit-device-pixel-ratio : 2) {
     #invoice-street-name {
         width: 70%;
     }
+
     #invoice-street-nr {
         width: 30%;
     }
+
     #invoice-details-container select,
     #invoice-details-container input {
         width: 100%;

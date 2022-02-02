@@ -1,7 +1,7 @@
 {
   "require": {
     "phpoffice/phpword": "v0.18.2",
-    "tecnickcom/tcpdf":  "v6.4.4",
+    "tecnickcom/tcpdf": "v6.4.4",
     "dompdf/dompdf": "v1.1.1",
     "konekt/pdf-invoice": "v1.7.0"
   }

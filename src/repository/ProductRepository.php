@@ -25,21 +25,21 @@ class ProductRepository
         return $conn->lastInsertId();
     }
 
-    public function addProducts(array $products,string $invoiceId, PDO $existingConn = null)
+    public function addProducts(array $products, string $invoiceId, PDO $existingConn = null)
     {
         $conn = $existingConn == null ? Repository::connect() : $existingConn;
         $productsCount = count($products);
         $stmt = $conn->prepare($this->prepareQueryForManyProductsInsert($productsCount));
 
         $values = array();
-        foreach ($products as $product){
+        foreach ($products as $product) {
             $tempValues = array(
                 $product['product_name'],
                 $product['unit'],
                 $product['netto'],
                 $product['percent']
             );
-            $values = array_merge($values,$tempValues);
+            $values = array_merge($values, $tempValues);
         }
 
         $stmt->execute($values);
@@ -47,7 +47,7 @@ class ProductRepository
         $idsQuantitiesPairs = array();
         $productsIds = array_values($stmt->fetchAll(PDO::FETCH_ASSOC));
         $products = array_values($products);
-        for($i = 0; $i < $productsCount; $i++){
+        for ($i = 0; $i < $productsCount; $i++) {
             $idsQuantitiesPairs[$productsIds[$i]['product_id']] = $products[$i]['quantity'];
         }
 
@@ -56,36 +56,34 @@ class ProductRepository
 
     private function prepareQueryForManyProductsInsert(int $productsQuantity): string
     {
-        $query = "INSERT INTO PRODUCTS(name,unit,netto_price,tax_percent) VALUES ".str_repeat("(?,?,?,?),", $productsQuantity);;
-        return substr_replace($query ,"",-1)." RETURNING product_id";
+        $query = "INSERT INTO PRODUCTS(name,unit,netto_price,tax_percent) VALUES " . str_repeat("(?,?,?,?),", $productsQuantity);;
+        return substr_replace($query, "", -1) . " RETURNING product_id";
     }
 
-    private function prepareQueryForManyProductsAssignToInvoice(int $productsCount): string
-    {
-        $query = "INSERT INTO INVOICES_PRODUCTS(invoice_id,product_id,quantity) VALUES ".str_repeat("(?,?,?),", $productsCount);;
-        return substr_replace($query ,"",-1);
-    }
-
-    private function assignProductsToInvoices(array $idsQuantitiesPairs,string $invoiceId, PDO $existingConn = null)
+    private function assignProductsToInvoices(array $idsQuantitiesPairs, string $invoiceId, PDO $existingConn = null)
     {
         $conn = $existingConn == null ? Repository::connect() : $existingConn;
         $productsCount = count($idsQuantitiesPairs);
         $stmt = $conn->prepare($this->prepareQueryForManyProductsAssignToInvoice($productsCount));
 
         $values = array();
-        foreach ($idsQuantitiesPairs as $productId => $quantity){
+        foreach ($idsQuantitiesPairs as $productId => $quantity) {
             $tempValues = array(
                 $invoiceId,
                 $productId,
                 $quantity
             );
-            $values = array_merge($values,$tempValues);
+            $values = array_merge($values, $tempValues);
         }
 
         $stmt->execute($values);
     }
 
-
+    private function prepareQueryForManyProductsAssignToInvoice(int $productsCount): string
+    {
+        $query = "INSERT INTO INVOICES_PRODUCTS(invoice_id,product_id,quantity) VALUES " . str_repeat("(?,?,?),", $productsCount);;
+        return substr_replace($query, "", -1);
+    }
 
 
 }

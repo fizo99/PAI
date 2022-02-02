@@ -69,6 +69,7 @@ nav a {
     color: var(--nav-text-inactive);
     text-decoration: none;
 }
+
 nav a:last-of-type {
     padding-right: 0;
 }
@@ -133,7 +134,8 @@ main {
 .success {
     color: var(--success);
 }
-.failure{
+
+.failure {
     color: var(--fail);
 }
 
@@ -186,7 +188,7 @@ input::-webkit-inner-spin-button {
 
 
 /*INPUT*/
-input,select,textarea {
+input, select, textarea {
     padding: 0.7em;
     background-color: var(--input-background);
     border: 1px solid var(--input-border);
@@ -198,6 +200,7 @@ input,select,textarea {
 input::placeholder, textarea::placeholder {
     color: var(--input-text-placeholder);
 }
+
 input:active, input:focus, textarea:active, textarea:focus {
     outline-color: var(--logo);
 }
@@ -209,51 +212,67 @@ input:active, input:focus, textarea:active, textarea:focus {
 .flex {
     display: flex;
 }
+
 .row {
     flex-direction: row;
 }
+
 .col {
     flex-direction: column;
 }
+
 .hor-center {
     justify-content: center;
 }
+
 .ver-center {
     align-items: center;
 }
+
 .hor-space-between {
     justify-content: space-between;
 }
+
 .w100 {
     width: 100%;
 }
+
 .w50 {
     width: 50%;
 }
+
 .w40 {
     width: 40%;
 }
+
 .w45 {
     width: 45%;
 }
+
 .w90 {
     width: 90%;
 }
+
 .w80 {
     width: 80%;
 }
+
 .w20 {
     width: 20%;
 }
+
 .w10 {
     width: 10%;
 }
+
 .w30 {
     width: 30%;
 }
+
 .w5 {
     width: 5%;
 }
+
 .w8 {
     width: 8%;
 }
@@ -294,21 +313,25 @@ input:active, input:focus, textarea:active, textarea:focus {
 
 table {
     table-layout: fixed;
-    border-collapse:separate;
+    border-collapse: separate;
 }
+
 thead th {
     position: sticky;
     top: 0;
     z-index: 1;
     background-color: var(--container-background);
 }
+
 table input {
     width: 100%;
 }
+
 table th {
     text-align: left;
     padding-bottom: 0.5em;
 }
+
 table tr {
     margin-top: 0.5em;
 }
@@ -317,37 +340,43 @@ table tr {
 i:hover {
     color: var(--logo);
 }
+
 .fa-ban:hover {
     color: red;
 }
 
 
 @media only screen
-and (device-width : 414px)
-and (device-height : 896px)
-and (-webkit-device-pixel-ratio : 2) {
+and (device-width: 414px)
+and (device-height: 896px)
+and (-webkit-device-pixel-ratio: 2) {
     table thead {
         display: none;
     }
+
     table tr {
         display: flex;
         flex-direction: column;
         border-bottom: 2px var(--input-border) solid;
     }
+
     table tr:last-child {
         border-bottom: none;
     }
+
     tbody tr td {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
+
     tbody tr td:last-child {
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 0.7em;
     }
+
     tbody tr input {
         max-width: 65%;
         text-align: right;

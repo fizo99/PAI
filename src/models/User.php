@@ -1,16 +1,12 @@
 <?php
 
-class User {
+class User
+{
     private $email;
     private $password;
     private $userId;
     private $companyId;
     private $isDemo;
-
-    public function getIsDemo(): string
-    {
-        return $this->isDemo;
-    }
 
     public function __construct(
         string $email,
@@ -18,12 +14,18 @@ class User {
         string $isDemo,
         string $userId = null,
         string $companyId = null
-    ) {
+    )
+    {
         $this->email = $email;
         $this->password = $password;
         $this->userId = $userId;
         $this->companyId = $companyId;
         $this->isDemo = $isDemo;
+    }
+
+    public function getIsDemo(): string
+    {
+        return $this->isDemo;
     }
 
     public function getUserId(): ?string

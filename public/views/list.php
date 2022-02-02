@@ -9,28 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link rel="stylesheet" href="public/css/commons.css">
-    <link rel="stylesheet" href="public/css/my_invoices.css">
+    <link rel="stylesheet" href="public/css/list.css">
     <script type="text/javascript" src="./public/js/common.js" defer></script>
-    <script type="text/javascript" src="./public/js/invoicesList.js" defer></script>
+    <script type="text/javascript" src="./public/js/list.js" defer></script>
     <script src="https://kit.fontawesome.com/6afad8acbe.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<nav>
-    <section id="logo">TAXAMO</section>
-    <section id="nav-buttons-container">
-        <a href="new_invoice">
-            <i class="fas fa-plus"></i>
-            <span>Nowa</span>
-        </a>
-        <a href="my_invoices" class="nav-active">
-            <i class="fas fa-list"></i>
-            <span>Moje faktury</span>
-        </a>
-        <a href="logout">
-            <i class="fas fa-sign-out-alt"></i>
-        </a>
-    </section>
-</nav>
+<?php include("nav.php"); ?>
 <main>
     <section>
         <input id="input-search-invoices" type="search" placeholder="Szukaj...">
@@ -48,7 +33,7 @@
                 </tr>
                 </thead>
                 <tbody id="items-table-body">
-                <?php require_once "translate.php" ?>
+                <?php require_once "translation/translate.php" ?>
                 <?php foreach ($invoices as $invoice): ?>
                     <tr>
                         <td><?= $invoice['buyer_name']; ?></td>
@@ -58,7 +43,8 @@
                         <td><?= $invoice['date']; ?></td>
                         <td>
                             <select name="state" onchange="updateInvoiceState(event);" required>
-                                <option value="" disabled selected hidden><?= translateStatePL($invoice['state']); ?></option>
+                                <option value="" disabled selected
+                                        hidden><?= translateStatePL($invoice['state']); ?></option>
                                 <option value="UNPAID">Niezapłacona</option>
                                 <option value="PAID">Zapłacona</option>
                                 <option value="CANCELLED">Anulowana</option>

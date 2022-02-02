@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function handleAction(event) {
-    if(event.target.value === "delete"){
+    if (event.target.value === "delete") {
         deleteInvoice(event);
-    }else if(event.target.value === "download_doc"){
+    } else if (event.target.value === "download_doc") {
         downloadInvoice(event);
     }
 }
@@ -32,7 +32,7 @@ function updateInvoiceState(event) {
     const invoiceId = rowChildren[rowChildren.length - 1].value
 
     activateSpinner();
-    fetch("/update_state/" + invoiceId, {
+    fetch("/invoice/" + invoiceId, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
@@ -40,8 +40,8 @@ function updateInvoiceState(event) {
         body: JSON.stringify({
             newState: newState
         })
-    }).then(response =>  {
-        if(response.ok){
+    }).then(response => {
+        if (response.ok) {
             return response.text()
         } else {
             throw new Error('Something went wrong' + response.text())
@@ -61,10 +61,10 @@ function deleteInvoice(event) {
     const invoiceId = rowChildren[rowChildren.length - 1].value
 
     activateSpinner();
-    fetch("/delete_invoice/" + invoiceId, {
+    fetch("/invoice/" + invoiceId, {
         method: "DELETE",
-    }).then(response =>  {
-        if(response.ok){
+    }).then(response => {
+        if (response.ok) {
             return response.text()
         } else {
             throw new Error('Something went wrong' + response.text())
@@ -73,7 +73,7 @@ function deleteInvoice(event) {
         spinnerSucces()
         setTimeout(() => {
             window.location.reload();
-        },1000);
+        }, 1000);
     }).catch(err => {
         spinnerFailure();
         console.log(err.message);
@@ -86,10 +86,10 @@ function downloadInvoice(event) {
     const invoiceId = rowChildren[rowChildren.length - 1].value
 
     activateSpinner();
-    fetch("/download_invoice/" + invoiceId, {
+    fetch("/invoice/" + invoiceId, {
         method: "GET",
-    }).then(response =>  {
-        if(response.ok){
+    }).then(response => {
+        if (response.ok) {
             return response.blob()
         } else {
             throw new Error('Something went wrong' + response.text())

@@ -1,6 +1,25 @@
 <?php
 
-class Address {
+class Address
+{
+    private $city;
+    private $zipCode;
+    private $streetName;
+    private $streetNumber;
+
+    public function __construct(
+        string $city,
+        string $zipCode,
+        string $streetName,
+        int    $streetNumber
+    )
+    {
+        $this->city = $city;
+        $this->zipCode = $zipCode;
+        $this->streetName = $streetName;
+        $this->streetNumber = $streetNumber;
+    }
+
     /**
      * @return mixed
      */
@@ -31,21 +50,5 @@ class Address {
     public function getStreetNumber()
     {
         return $this->streetNumber;
-    }
-    private $city;
-    private $zipCode;
-    private $streetName;
-    private $streetNumber;
-
-    public function __construct(
-        string $city,
-        string $zipCode,
-        string $streetName,
-        int $streetNumber
-    ) {
-        $this->city=$city;
-        $this->zipCode=$zipCode;
-        $this->streetName=$streetName;
-        $this->streetNumber=$streetNumber;
     }
 }

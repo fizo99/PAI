@@ -42,7 +42,7 @@ class UserRepository
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($result == false) {
-            throw new UserAbsentException("User with id ". $userId ."does not exist.");
+            throw new UserAbsentException("User with id " . $userId . "does not exist.");
         }
         return $result['company_id'];
     }

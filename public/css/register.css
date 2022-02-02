@@ -5,6 +5,7 @@ main {
     justify-content: center;
     align-items: center;
 }
+
 form {
     display: flex;
     flex-direction: column;
@@ -12,31 +13,38 @@ form {
     align-items: center;
     width: 40vw;
 }
+
 #logo {
     font-size: 5em;
     letter-spacing: 0.15em;
 }
+
 form label {
     margin-top: 0.2em;
 }
+
 form input {
     margin-top: 0.3em;
     padding: 0.5em 1em 0.5em 1em;
     flex-grow: 1;
 }
+
 form button {
     margin-top: 0.4em;
     width: 30%;
 }
+
 form section {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
+
 #is_demo {
     margin-left: 0.5em;
 }
-form a {
+
+a {
     text-decoration: none;
     color: var(--logo);
     margin-top: 0.4em;
@@ -50,22 +58,26 @@ main form {
 }
 
 @media only screen
-and (device-width : 414px)
-and (device-height : 896px)
-and (-webkit-device-pixel-ratio : 2) {
+and (device-width: 414px)
+and (device-height: 896px)
+and (-webkit-device-pixel-ratio: 2) {
     #logo {
         font-size: 3.5em;
         margin-bottom: 0.3em;
     }
+
     form {
         width: 80vw;
     }
+
     main button {
         margin-top: 1em;
     }
+
     form input {
         margin-top: 0.7em;
     }
+
     form input[type="checkbox"] {
         margin-top: 0;
     }
